@@ -3,3 +3,4 @@ rootProject.name = "Wire"
 include ':wire-di-annotations-common'
 include ':wire-di-annotations'
 include ':wire-initializer'
+include ':sample-initializer'

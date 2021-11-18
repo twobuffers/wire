@@ -1,0 +1,55 @@
+import buildcfg.Libs
+import buildcfg.Versions
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+    defaultConfig {
+        applicationId "com.twobuffers.wire.sample_initializer"
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode 1000001
+        versionName "1.0.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        buildConfig = true
+        resValues = true
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = Versions.JAVA_VERSION_STR
+        targetCompatibility = Versions.JAVA_VERSION_STR
+    }
+    kotlinOptions {
+        jvmTarget = Versions.JAVA_VERSION_STR
+    }
+}
+
+dependencies {
+    implementation project(':wire-di-annotations')
+    implementation project(':wire-initializer')
+
+    implementation Libs.Dagger.dagger
+    implementation Libs.Dagger.daggerAndroid
+    implementation Libs.Dagger.daggerAndroidSupport
+    kapt Libs.Dagger.daggerCompiler
+    kapt Libs.Dagger.daggerAndroidProcessor
+
+    implementation Libs.AndroidX.appcompat
+    implementation Libs.AndroidX.constraintlayout
+}
