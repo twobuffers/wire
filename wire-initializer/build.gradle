@@ -17,3 +17,7 @@ dependencies {
     api Libs.AndroidX.Annotation.annotation
     api Libs.Dagger.dagger
 }
+
+mavenPublish {
+    releaseSigningEnabled = false
+}

@@ -16,3 +16,7 @@ dependencies {
     implementation Libs.Kotlin.kotlinStdlib
     api Libs.Dagger.dagger
 }
+
+mavenPublish {
+    releaseSigningEnabled = false
+}
