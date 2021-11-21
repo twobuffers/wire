@@ -22,6 +22,8 @@ object GradlePlugins {
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     // https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/CHANGELOG.md
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.18.0"
+    // https://github.com/ben-manes/gradle-versions-plugin/releases
+    const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.39.0"
 }
 
 object Libs {

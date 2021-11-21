@@ -4,3 +4,7 @@ publish:
 
 publishLocal:
 	-./gradlew clean assemble publishToMavenLocal --no-daemon --no-parallel
+
+.PHONY: depsUpdates
+depsUpdates:
+	-./gradlew dependencyUpdates
