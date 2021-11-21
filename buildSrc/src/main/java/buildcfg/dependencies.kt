@@ -24,6 +24,8 @@ object GradlePlugins {
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.18.0"
     // https://github.com/ben-manes/gradle-versions-plugin/releases
     const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.39.0"
+    // https://maven.google.com/web/index.html#com.google.gms:google-services
+    const val googleServices = "com.google.gms:google-services:4.3.10"
 }
 
 object Libs {
@@ -52,6 +54,16 @@ object Libs {
         const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:$version"
         const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"
         const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:$version"
+    }
+
+    object AssistedInject {
+        private const val version = "0.8.1"
+        const val assistedInjectAnnotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
+        const val assistedInjectProcessorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:$version"
+        const val assistedInjectAnnotations = "com.squareup.inject:assisted-inject-annotations:$version"
+        const val assistedInjectProcessor = "com.squareup.inject:assisted-inject-processor:$version"
+        const val inflationInject = "com.squareup.inject:inflation-inject:$version"
+        const val inflationInjectProcessor = "com.squareup.inject:inflation-inject-processor:$version"
     }
 
     const val jsr250Api = "javax.annotation:jsr250-api:1.0" // for Dagger
@@ -169,4 +181,33 @@ object Libs {
         }
     }
 
+    // SAAS
+
+    object GooglePlayServices {
+        const val playServicesBase = "com.google.android.gms:play-services-base:17.3.0"
+        const val playServicesAuthApiPhone = "com.google.android.gms:play-services-auth-api-phone:17.4.0"
+        const val playServicesAdsIdentifier = "com.google.android.gms:play-services-ads-identifier:17.0.0"
+        const val playServicesWallet = "com.google.android.gms:play-services-wallet:18.0.0"
+        const val playServicesWalletObsolete = "com.google.android.gms:play-services-wallet:16.0.0"
+        const val playServicesMaps = "com.google.android.gms:play-services-maps:17.0.0"
+        const val playServicesLocation = "com.google.android.gms:play-services-location:17.0.0"
+    }
+
+    object Firebase {
+        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:20.0.0"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
+        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
+        const val firebaseAuth = "com.google.firebase:firebase-auth:21.0.1"            // https://maven.google.com/web/index.html#com.google.firebase:firebase-auth
+        const val firebaseBom = "com.google.firebase:firebase-bom:29.0.0"              // https://maven.google.com/web/index.html#com.google.firebase:firebase-bom
+        const val firebaseConfig = "com.google.firebase:firebase-config:21.0.1"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-config
+        const val firebaseConfigKtx = "com.google.firebase:firebase-config-ktx:21.0.1" // https://maven.google.com/web/index.html#com.google.firebase:firebase-config-ktx
+        const val firebaseCore = "com.google.firebase:firebase-core:20.0.0"            // https://maven.google.com/web/index.html#com.google.firebase:firebase-core
+        const val firebaseFirestore = "com.google.firebase:firebase-firestore:24.0.0"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-firestore
+        const val firebaseMessaging = "com.google.firebase:firebase-messaging:23.0.0"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-messaging
+
+        object Crashlytics {
+            const val crashlytics = "com.google.firebase:firebase-crashlytics:17.2.1"
+            const val crashlyticsNdk = "com.google.firebase:firebase-crashlytics-ndk:17.2.1"
+            const val gradlePlugin = "com.google.firebase:firebase-crashlytics-gradle:2.3.0"
+        }
+    }
 }

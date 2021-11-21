@@ -15,6 +15,7 @@ buildscript {
         classpath(buildcfg.GradlePlugins.kotlinGradlePlugin)
         classpath(buildcfg.GradlePlugins.gradleMavenPublishPlugin)
         classpath(buildcfg.GradlePlugins.gradleVersionsPlugin)
+        classpath(buildcfg.GradlePlugins.googleServices)
     }
 }
 

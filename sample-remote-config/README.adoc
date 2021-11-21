@@ -1,0 +1,8 @@
+= wire/sample-remote-config
+
+[NOTE]
+====
+This example to run correctly requires google-services.json file.
+If you are part of TwoBuffers you can restore it with `make restoreSecrets`,
+otherwise you need to create a Firebase project and provide your own google-services.json.
+====
