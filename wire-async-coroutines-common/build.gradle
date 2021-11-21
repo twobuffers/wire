@@ -1,0 +1,22 @@
+import buildcfg.Libs
+import buildcfg.Versions
+
+plugins {
+    id 'java-library'
+    id 'kotlin'
+    id 'com.vanniktech.maven.publish'
+}
+
+java {
+    sourceCompatibility = Versions.JAVA_VERSION_STR
+    targetCompatibility = Versions.JAVA_VERSION_STR
+}
+
+dependencies {
+    implementation Libs.Kotlin.kotlinStdlib
+    api Libs.Dagger.dagger
+}
+
+mavenPublish {
+    releaseSigningEnabled = false
+}

@@ -35,6 +35,16 @@ object Libs {
         const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     }
 
+    object Coroutines {
+        private const val version = "1.5.2"
+        const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        const val coroutinesRx2 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$version"
+        const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
+        const val coroutinesPlayServices = "org.jetbrains.kotlinx:kotlinx-coroutines-play-services:$version"
+        const val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:$version"
+        const val coroutinesDebug = "org.jetbrains.kotlinx:kotlinx-coroutines-debug:$version"
+    }
+
     object Dagger {
         private const val version = "2.40.1" // https://github.com/google/dagger/releases
         const val dagger = "com.google.dagger:dagger:$version"

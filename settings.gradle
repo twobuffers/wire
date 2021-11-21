@@ -2,5 +2,7 @@ rootProject.name = "Wire"
 
 include ':wire-di-annotations-common'
 include ':wire-di-annotations'
+include ':wire-async-coroutines-common'
+include ':wire-async-coroutines'
 include ':wire-initializer'
 include ':sample-initializer'
