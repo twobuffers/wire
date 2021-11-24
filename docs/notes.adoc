@@ -1,0 +1,65 @@
+= Misc Notes
+Greg Rynkowski
+2021-11-24
+:toc:
+
+:root-dir: .
+:docs-dir: {root-dir}/docs
+
+== Publishing to maven repo
+
+* We use Sonatype. Useful links:
+
+  - https://central.sonatype.org/publish/publish-guide/
+  - https://central.sonatype.org/publish/release/ - about manual release (we don't use it)
+
+* The ticket I opened to create the repo is link:https://issues.sonatype.org/browse/OSSRH-75397[HERE]
+
+
+== Creating GPG key for CI/CD
+
+[source,text]
+----
+# generate key & encryption subkey
+% gpg --homedir ./gpghome --quick-generate-key bot@twobuffers.com rsa4096 cert,sign 5y
+% gpg --homedir ./gpghome --quick-add-key EC028A8F8CC38305E3985757C61684C6B1E96730 rsa4096 encrypt 5y
+
+# preview
+% gpg --homedir ./gpghome -K --keyid-format long
+/Users/greg/Sources/opensource/twobuffers/wire/./gpghome/pubring.kbx
+--------------------------------------------------------------------
+sec   rsa4096/C61684C6B1E96730 2021-11-24 [SC] [expires: 2026-11-23]
+      EC028A8F8CC38305E3985757C61684C6B1E96730
+uid                 [ultimate] bot@twobuffers.com
+ssb   rsa4096/A5F705A34BC4F66C 2021-11-24 [E] [expires: 2026-11-23]
+
+# export
+% gpg --homedir ./gpghome --armor --export                > public-EC028A8F8CC38305E3985757C61684C6B1E96730.asc
+% gpg --homedir ./gpghome --armor --export-secret-key     > private-EC028A8F8CC38305E3985757C61684C6B1E96730.asc
+% gpg --homedir ./gpghome --armor --export-secret-subkeys > private-EC028A8F8CC38305E3985757C61684C6B1E96730-subkeys.asc
+
+# save GPG keys to pass
+pass insert twobuffers/proj/wire/circleci-gpg/passphrase # need to type passphrase
+cat private-EC028A8F8CC38305E3985757C61684C6B1E96730.asc | base64 -w0 | pass insert --echo twobuffers/proj/wire/circleci-gpg/private-key
+
+# read GPG keys from pass
+pass show twobuffers/proj/wire/circleci-gpg/passphrase
+pass show twobuffers/proj/wire/circleci-gpg/public-key | base64 -d
+pass show twobuffers/proj/wire/circleci-gpg/private-key | base64 -d
+
+# verify public GPG key
+% pass show twobuffers/proj/wire/circleci-gpg/public-key | base64 -d | gpg --keyid-format long                                                                                                                                                                                                                                                                      !2999
+pub   rsa4096/C61684C6B1E96730 2021-11-24 [SC] [expires: 2026-11-23]
+      EC028A8F8CC38305E3985757C61684C6B1E96730
+uid                           bot@twobuffers.com
+sub   rsa4096/A5F705A34BC4F66C 2021-11-24 [E] [expires: 2026-11-23]
+----
+
+
+== Interesting code examples
+
+=== **BindsOptionalOf**
+
+- https://dagger.dev/api/latest/dagger/BindsOptionalOf.html
+- https://programmerwiki.com/article/26962730532/
+- https://programmerclick.com/article/54102320372/
