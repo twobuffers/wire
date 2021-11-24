@@ -33,7 +33,7 @@ subprojects {
             freeCompilerArgs = listOf("-Xjsr305=strict")
             jvmTarget = buildcfg.Versions.JAVA_VERSION_STR
             // Treat all Kotlin warnings as errors
-            allWarningsAsErrors = true
+            allWarningsAsErrors = false
         }
     }
 }
