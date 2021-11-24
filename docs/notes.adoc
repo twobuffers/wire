@@ -37,18 +37,22 @@ ssb   rsa4096/A5F705A34BC4F66C 2021-11-24 [E] [expires: 2026-11-23]
 % gpg --homedir ./gpghome --armor --export                > public-EC028A8F8CC38305E3985757C61684C6B1E96730.asc
 % gpg --homedir ./gpghome --armor --export-secret-key     > private-EC028A8F8CC38305E3985757C61684C6B1E96730.asc
 % gpg --homedir ./gpghome --armor --export-secret-subkeys > private-EC028A8F8CC38305E3985757C61684C6B1E96730-subkeys.asc
+% gpg --homedir ./gpghome --armor --export-secret-keys    > secring-EC028A8F8CC38305E3985757C61684C6B1E96730.asc
+% gpg --homedir ./gpghome --export-secret-keys            > secring-EC028A8F8CC38305E3985757C61684C6B1E96730.gpg
 
 # save GPG keys to pass
 pass insert twobuffers/proj/wire/circleci-gpg/passphrase # need to type passphrase
-cat private-EC028A8F8CC38305E3985757C61684C6B1E96730.asc | base64 -w0 | pass insert --echo twobuffers/proj/wire/circleci-gpg/private-key
+base64 -w0 private-EC028A8F8CC38305E3985757C61684C6B1E96730.asc | pass insert --echo proj/wire/circleci-gpg/private-key
+base64 -w0 secring-EC028A8F8CC38305E3985757C61684C6B1E96730.gpg | pass insert --echo proj/wire/circleci-gpg/secring.gpg
 
 # read GPG keys from pass
-pass show twobuffers/proj/wire/circleci-gpg/passphrase
-pass show twobuffers/proj/wire/circleci-gpg/public-key | base64 -d
-pass show twobuffers/proj/wire/circleci-gpg/private-key | base64 -d
+pass show proj/wire/circleci-gpg/passphrase
+pass show proj/wire/circleci-gpg/public-key | base64 -d
+pass show proj/wire/circleci-gpg/private-key | base64 -d
+pass show proj/wire/circleci-gpg/secring.gpg | base64 -d > secring.gpg
 
 # verify public GPG key
-% pass show twobuffers/proj/wire/circleci-gpg/public-key | base64 -d | gpg --keyid-format long                                                                                                                                                                                                                                                                      !2999
+% pass show proj/wire/circleci-gpg/public-key | base64 -d | gpg --keyid-format long
 pub   rsa4096/C61684C6B1E96730 2021-11-24 [SC] [expires: 2026-11-23]
       EC028A8F8CC38305E3985757C61684C6B1E96730
 uid                           bot@twobuffers.com

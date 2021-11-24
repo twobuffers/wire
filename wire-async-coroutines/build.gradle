@@ -39,7 +39,3 @@ dependencies {
     api Libs.Dagger.dagger
     kapt Libs.Dagger.daggerCompiler
 }
-
-mavenPublish {
-    releaseSigningEnabled = false
-}

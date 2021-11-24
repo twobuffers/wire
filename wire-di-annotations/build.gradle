@@ -34,7 +34,3 @@ dependencies {
     api Libs.Dagger.dagger
     api Libs.AndroidX.Lifecycle.lifecycleViewmodelKtx
 }
-
-mavenPublish {
-    releaseSigningEnabled = false
-}

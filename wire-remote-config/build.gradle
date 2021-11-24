@@ -49,7 +49,3 @@ dependencies {
     kapt Libs.Dagger.daggerCompiler
     api Libs.Firebase.firebaseConfigKtx
 }
-
-mavenPublish {
-    releaseSigningEnabled = false
-}

@@ -17,7 +17,3 @@ dependencies {
     implementation Libs.Coroutines.coroutinesCore
     api Libs.Dagger.dagger
 }
-
-mavenPublish {
-    releaseSigningEnabled = false
-}
