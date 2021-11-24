@@ -174,4 +174,4 @@ release/app-prod.properties
 *-sentry-debug-meta.properties
 
 # potentially harmful to show publicly
-./sample-remote-config/google-services.json
+sample-remote-config/google-services.json
