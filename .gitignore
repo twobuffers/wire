@@ -172,3 +172,6 @@ release/app-prod.properties
 
 # Sentry log of mapping push
 *-sentry-debug-meta.properties
+
+# potentially harmful to show publicly
+./sample-remote-config/google-services.json
