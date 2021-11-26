@@ -6,10 +6,10 @@ package com.twobuffers.wire.sample_remoteconfig.di
 
 import android.app.Application
 import android.content.Context
-import com.twobuffers.wire.remoteconfig.FirebaseRemoteConfigDefaultConfigMap
-import com.twobuffers.wire.remoteconfig.FirebaseRemoteConfigObserverCheckInterval
-import com.twobuffers.wire.remoteconfig.WireFirebaseRemoteConfigModule
-import com.twobuffers.wire.remoteconfig.WireFirebaseRemoteConfigObserverModule
+import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigDefaultConfigMap
+import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigObserverCheckInterval
+import com.twobuffers.wire.firebaseconfig.WireFirebaseRemoteConfigModule
+import com.twobuffers.wire.firebaseconfig.WireFirebaseRemoteConfigObserverModule
 import com.twobuffers.wire.sample_remoteconfig.SampleApp
 import dagger.Binds
 import dagger.Module

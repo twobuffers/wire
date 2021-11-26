@@ -46,7 +46,7 @@ dependencies {
     implementation project(':wire-di-annotations')
     implementation project(':wire-async-coroutines')
     implementation project(':wire-initializer')
-    implementation project(':wire-remote-config')
+    implementation project(':wire-firebase-config')
 
     implementation Libs.Dagger.dagger
     implementation Libs.Dagger.daggerAndroid

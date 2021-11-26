@@ -4,7 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.twobuffers.wire.remoteconfig.FirebaseRemoteConfigObserver
+import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigObserver
 import com.twobuffers.wire.sample_remoteconfig.databinding.ActivitySampleBinding
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.coroutines.Dispatchers
