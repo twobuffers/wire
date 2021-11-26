@@ -1,4 +1,4 @@
-package com.twobuffers.wire.sample_remoteconfig.ui
+package com.twobuffers.wire.sample_firebaseconfig.ui
 
 import com.twobuffers.wire.di.ActivityScoped
 import dagger.Module

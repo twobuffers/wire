@@ -1,7 +1,7 @@
-package com.twobuffers.wire.sample_remoteconfig
+package com.twobuffers.wire.sample_firebaseconfig
 
 import com.twobuffers.wire.initializer.WireInitializers
-import com.twobuffers.wire.sample_remoteconfig.di.createComponent
+import com.twobuffers.wire.sample_firebaseconfig.di.createComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import javax.inject.Inject

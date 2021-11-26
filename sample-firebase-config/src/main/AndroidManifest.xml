@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.twobuffers.wire.sample_remoteconfig">
+    package="com.twobuffers.wire.sample_firebaseconfig">
 
     <application
         android:name=".SampleApp"
