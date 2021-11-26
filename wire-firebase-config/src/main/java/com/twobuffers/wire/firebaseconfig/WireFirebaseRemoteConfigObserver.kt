@@ -7,7 +7,7 @@ import com.twobuffers.wire.async.coroutines.ComputationDispatcher
 import com.twobuffers.wire.async.coroutines.ProcessLifetimeCoroutineScope
 import com.twobuffers.wire.async.coroutines.utils.every
 import com.twobuffers.wire.di.ApplicationScoped
-import com.twobuffers.wire.initializer.WireInitializer
+import com.twobuffers.wire.initializer.Initializer
 import com.twobuffers.wire.utils.logTag
 import dagger.BindsOptionalOf
 import dagger.Module
@@ -74,7 +74,7 @@ class FirebaseRemoteConfigObserver @Inject constructor(
 class FirebaseRemoteConfigObserverInitializer @AssistedInject constructor(
     private val firebaseRemoteConfigObserver: FirebaseRemoteConfigObserver,
     @Assisted priority: Int = DEFAULT_PRIORITY,
-) : WireInitializer(priority) {
+) : Initializer(priority) {
     override fun init() {
         firebaseRemoteConfigObserver.init()
     }
@@ -91,7 +91,7 @@ object WireFirebaseRemoteConfigObserverModule {
 
     @Provides
     @IntoSet
-    fun provideInitializer(f: FirebaseRemoteConfigObserverInitializer.Factory): WireInitializer = f.create(priority = 1)
+    fun provideInitializer(f: FirebaseRemoteConfigObserverInitializer.Factory): Initializer = f.create(priority = 1)
 
     @Module
     abstract class BindingModule {

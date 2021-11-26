@@ -5,7 +5,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.twobuffers.wire.di.ApplicationScoped
-import com.twobuffers.wire.initializer.WireInitializer
+import com.twobuffers.wire.initializer.Initializer
 import dagger.BindsOptionalOf
 import dagger.Module
 import dagger.Provides
@@ -39,7 +39,7 @@ class WireFirebaseRemoteConfigInitializer @Inject constructor(
     @FirebaseRemoteConfigDefaultConfigXmlRes private val defaultConfigXmlRes: Optional<Int>,
     @FirebaseRemoteConfigMinFetchIntervalInSecs private val minFetchIntervalInSecs: Optional<Long>,
     @FirebaseRemoteConfigInitializerPriority priority: Optional<Int>,
-) : WireInitializer(priority.orElse(DEFAULT_PRIORITY)) {
+) : Initializer(priority.orElse(DEFAULT_PRIORITY)) {
 
     override fun init() {
         val settings = remoteConfigSettings {
