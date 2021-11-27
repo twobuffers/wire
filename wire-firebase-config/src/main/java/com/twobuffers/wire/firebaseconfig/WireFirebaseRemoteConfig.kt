@@ -48,6 +48,9 @@ class WireFirebaseRemoteConfigInitializer @Inject constructor(
             // My apps fetch remote config at the app start and after that periodically,
             // e.g. every hour. Optionally, in some rare cases, I may request fetch explicitly,
             // and then, I want to the latest config, not the cached one. That's why I set it to 0.
+            // OTOH according to the docs, fetching too often might lead to FirebaseRemoteConfigFetchThrottledException:
+            // https://firebase.google.com/docs/remote-config/get-started?platform=android#throttling
+            // So if you  think you might be requesting fetch explicitly, might need to set this value.
             minimumFetchIntervalInSeconds = minFetchIntervalInSecs.orElse(0)
         }
         firebaseRemoteConfig.setConfigSettingsAsync(settings)
@@ -69,6 +72,10 @@ object WireFirebaseRemoteConfigModule {
     @Provides
     @ApplicationScoped
     fun remoteFirebaseRemoteConfig(): FirebaseRemoteConfig = Firebase.remoteConfig
+    // FirebaseInitProvider handles initializing FirebaseApp.
+    // No longer need to call FirebaseApp.initializeApp, unless we support an unusual case.
+    // https://firebase.google.com/docs/reference/android/com/google/firebase/FirebaseApp
+    // https://firebase.google.com/docs/reference/android/com/google/firebase/provider/FirebaseInitProvider
 
     @Module
     abstract class BindingModule {
