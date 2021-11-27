@@ -194,15 +194,16 @@ object Libs {
     }
 
     object Firebase {
-        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:20.0.0"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
-        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
-        const val firebaseAuth = "com.google.firebase:firebase-auth:21.0.1"            // https://maven.google.com/web/index.html#com.google.firebase:firebase-auth
-        const val firebaseBom = "com.google.firebase:firebase-bom:29.0.0"              // https://maven.google.com/web/index.html#com.google.firebase:firebase-bom
-        const val firebaseConfig = "com.google.firebase:firebase-config:21.0.1"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-config
-        const val firebaseConfigKtx = "com.google.firebase:firebase-config-ktx:21.0.1" // https://maven.google.com/web/index.html#com.google.firebase:firebase-config-ktx
-        const val firebaseCore = "com.google.firebase:firebase-core:20.0.0"            // https://maven.google.com/web/index.html#com.google.firebase:firebase-core
-        const val firebaseFirestore = "com.google.firebase:firebase-firestore:24.0.0"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-firestore
-        const val firebaseMessaging = "com.google.firebase:firebase-messaging:23.0.0"  // https://maven.google.com/web/index.html#com.google.firebase:firebase-messaging
+        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:20.0.0"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
+        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx:20.0.0" // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
+        const val firebaseAuth = "com.google.firebase:firebase-auth:21.0.1"                  // https://maven.google.com/web/index.html#com.google.firebase:firebase-auth
+        const val firebaseBom = "com.google.firebase:firebase-bom:29.0.0"                    // https://maven.google.com/web/index.html#com.google.firebase:firebase-bom
+        const val firebaseConfig = "com.google.firebase:firebase-config:21.0.1"              // https://maven.google.com/web/index.html#com.google.firebase:firebase-config
+        const val firebaseConfigKtx = "com.google.firebase:firebase-config-ktx:21.0.1"       // https://maven.google.com/web/index.html#com.google.firebase:firebase-config-ktx
+        const val firebaseCore = "com.google.firebase:firebase-core:20.0.0"                  // https://maven.google.com/web/index.html#com.google.firebase:firebase-core
+        const val firebaseFirestore = "com.google.firebase:firebase-firestore:24.0.0"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-firestore
+        const val firebaseMessaging = "com.google.firebase:firebase-messaging:23.0.0"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-messaging
+        const val firebaseMessagingKtx = "com.google.firebase:firebase-messaging-ktx:23.0.0" // https://maven.google.com/web/index.html#com.google.firebase:firebase-messaging-ktx
 
         object Crashlytics {
             const val crashlytics = "com.google.firebase:firebase-crashlytics:17.2.1"
