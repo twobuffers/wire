@@ -1,0 +1,51 @@
+= Signing APK
+Greg Rynkowski
+2021-11-27
+:toc:
+
+== FAQ
+
+=== Why PKCS12 not JKS? / Why .p12 not just .jks?
+
+JKS, the default format is a proprietary format and Android Studio,
+as well as, keytool complains about it, and recommend converting it to PKCS12.
+That's why I decided to use PKCS12 straight away.
+
+NOTE: PKCS12 requires to have _storepass_ and _keypass_ the same, so don't be surprised when the
+keytool wouldn't work if you choose different values.
+
+
+== CLI commands
+
+=== Create the debug key
+
+  keytool -genkeypair                                                 \
+          -keyalg RSA -keysize 2048                                   \
+          -dname "CN=Grzegorz Rynkowski, OU=, O=Two Buffers, L=London, ST=England, C=GB" \
+          -alias "signing-key"                                        \
+          -keystore "release/app-debug.p12" -storepass "android"      \
+          -validity 20000                                             \
+          -deststoretype PKCS12
+
+_Obviously same command has been used to create release signing key._
+
+
+=== Preview the keystore:
+
+  keytool -list -keystore release/app-debug.p12 -storepass android -v
+
+=== Check certificates of the APK
+
+  jarsigner -verify -verbose -certs my_application.apk
+
+or
+
+  unzip my.apk
+  keytool -printcert -file META-INF/CERT.RSA
+
+or
+
+  apksigner verify --print-certs ~/Desktop/base.apk
+
+`apksigner` is not by default in PATH. You can find it in buildtools,
+e.g. `$ANDROID_HOME/build-tools/29.0.0/apksigner`.
