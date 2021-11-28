@@ -12,7 +12,7 @@ object Versions {
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/JetBrains/kotlin/releases
-    const val kotlin = "1.6.0"
+    const val kotlin = "1.5.31"
 }
 
 
