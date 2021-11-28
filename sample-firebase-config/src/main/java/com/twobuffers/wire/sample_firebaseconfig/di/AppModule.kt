@@ -6,8 +6,8 @@ package com.twobuffers.wire.sample_firebaseconfig.di
 
 import android.app.Application
 import android.content.Context
-import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigDefaultConfigMap
-import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigObserverCheckInterval
+import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigInitializer
+import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigObserver
 import com.twobuffers.wire.firebaseconfig.WireFirebaseRemoteConfigModule
 import com.twobuffers.wire.firebaseconfig.WireFirebaseRemoteConfigObserverModule
 import com.twobuffers.wire.sample_firebaseconfig.SampleApp
@@ -24,11 +24,11 @@ import dagger.Provides
 )
 object AppModule {
     @Provides
-    @FirebaseRemoteConfigDefaultConfigMap
+    @FirebaseRemoteConfigInitializer.DefaultConfigMap
     fun providesDefaultRemoteConfig(): Map<String, Any> = mapOf("feature_a_enabled" to false)
 
     @Provides
-    @FirebaseRemoteConfigObserverCheckInterval
+    @FirebaseRemoteConfigObserver.CheckInterval
     fun providesRemoteConfigObserverIntervalInSecs(): Long = 10L
     // Warning:
     // It is not recommended to set such a short interval. It is set here to 10 seconds only for demo purposes.

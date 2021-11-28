@@ -9,12 +9,9 @@ import com.twobuffers.wire.async.coroutines.utils.every
 import com.twobuffers.wire.di.ApplicationScoped
 import com.twobuffers.wire.initializer.Initializer
 import com.twobuffers.wire.utils.logTag
+import dagger.Binds
 import dagger.BindsOptionalOf
 import dagger.Module
-import dagger.Provides
-import dagger.assisted.Assisted
-import dagger.assisted.AssistedFactory
-import dagger.assisted.AssistedInject
 import dagger.multibindings.IntoSet
 import java.util.Optional
 import javax.inject.Inject
@@ -28,15 +25,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.plus
 import kotlinx.coroutines.tasks.await
 
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-@MustBeDocumented
-annotation class FirebaseRemoteConfigObserverCheckInterval
-
 @ApplicationScoped
 class FirebaseRemoteConfigObserver @Inject constructor(
     private val firebaseRemoteConfig: FirebaseRemoteConfig,
-    @FirebaseRemoteConfigObserverCheckInterval private val checkIntervalInSecs: Optional<Long>,
+    @CheckInterval private val checkIntervalInSecs: Optional<Long>,
     @ComputationDispatcher private val dispatcher: CoroutineDispatcher,
     @ProcessLifetimeCoroutineScope private val processLifetimeScope: CoroutineScope,
 ) {
@@ -69,34 +61,53 @@ class FirebaseRemoteConfigObserver @Inject constructor(
     companion object {
         const val DEFAULT_CHECK_INTERVAL = 3600L // 1h
     }
-}
 
-class FirebaseRemoteConfigObserverInitializer @AssistedInject constructor(
-    private val firebaseRemoteConfigObserver: FirebaseRemoteConfigObserver,
-    @Assisted priority: Int = DEFAULT_PRIORITY,
-) : Initializer(priority) {
-    override fun init() {
-        firebaseRemoteConfigObserver.init()
-    }
-
-    @AssistedFactory
-    interface Factory {
-        fun create(priority: Int): FirebaseRemoteConfigObserverInitializer
-    }
-}
-
-// This module depends on WireFirebaseRemoteConfigModule, so the latter must be also included in the Dagger component.
-@Module(includes = [WireFirebaseRemoteConfigObserverModule.BindingModule::class])
-object WireFirebaseRemoteConfigObserverModule {
-
-    @Provides
-    @IntoSet
-    fun provideInitializer(f: FirebaseRemoteConfigObserverInitializer.Factory): Initializer = f.create(priority = 1)
+    @Retention(AnnotationRetention.RUNTIME)
+    @Qualifier
+    @MustBeDocumented
+    annotation class CheckInterval
 
     @Module
     abstract class BindingModule {
         @BindsOptionalOf
-        @FirebaseRemoteConfigObserverCheckInterval
-        abstract fun bindOptionalMinFetchIntervalInSecs(): Long
+        @CheckInterval
+        abstract fun bindOptionalCheckInterval(): Long
     }
 }
+
+
+class FirebaseRemoteConfigObserverInitializer @Inject constructor(
+    private val firebaseRemoteConfigObserver: FirebaseRemoteConfigObserver,
+    @Priority priority: Optional<Int>,
+) : Initializer(priority.orElse(DEFAULT_PRIORITY)) {
+    override fun init() {
+        firebaseRemoteConfigObserver.init()
+    }
+
+    companion object {
+        const val DEFAULT_PRIORITY = 10
+    }
+
+    @Retention(AnnotationRetention.RUNTIME)
+    @Qualifier
+    @MustBeDocumented
+    annotation class Priority
+
+    @Module
+    abstract class BindingModule {
+        @Binds
+        @IntoSet
+        abstract fun bindInitializer(b: FirebaseRemoteConfigObserverInitializer): Initializer
+
+        @BindsOptionalOf
+        @Priority
+        abstract fun bindOptionalPriority(): Int
+    }
+}
+
+// This module depends on WireFirebaseRemoteConfigModule, so the latter must be also included in the Dagger component.
+@Module(includes = [
+    FirebaseRemoteConfigObserver.BindingModule::class,
+    FirebaseRemoteConfigObserverInitializer.BindingModule::class,
+])
+object WireFirebaseRemoteConfigObserverModule

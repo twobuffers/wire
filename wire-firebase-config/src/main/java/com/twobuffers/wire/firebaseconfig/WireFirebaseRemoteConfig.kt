@@ -6,52 +6,26 @@ import com.google.firebase.remoteconfig.ktx.remoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfigSettings
 import com.twobuffers.wire.di.ApplicationScoped
 import com.twobuffers.wire.initializer.Initializer
+import dagger.Binds
 import dagger.BindsOptionalOf
 import dagger.Module
 import dagger.Provides
+import dagger.multibindings.IntoSet
 import java.util.Optional
 import javax.inject.Inject
 import javax.inject.Qualifier
 
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-@MustBeDocumented
-annotation class FirebaseRemoteConfigDefaultConfigMap
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-@MustBeDocumented
-annotation class FirebaseRemoteConfigDefaultConfigXmlRes
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-@MustBeDocumented
-annotation class FirebaseRemoteConfigMinFetchIntervalInSecs
-
-@Retention(AnnotationRetention.RUNTIME)
-@Qualifier
-@MustBeDocumented
-annotation class FirebaseRemoteConfigInitializerPriority
-
-class WireFirebaseRemoteConfigInitializer @Inject constructor(
+class FirebaseRemoteConfigInitializer @Inject constructor(
     private val firebaseRemoteConfig: FirebaseRemoteConfig,
-    @FirebaseRemoteConfigDefaultConfigMap private val defaultConfigMap: Optional<Map<String, Any>>,
-    @FirebaseRemoteConfigDefaultConfigXmlRes private val defaultConfigXmlRes: Optional<Int>,
-    @FirebaseRemoteConfigMinFetchIntervalInSecs private val minFetchIntervalInSecs: Optional<Long>,
-    @FirebaseRemoteConfigInitializerPriority priority: Optional<Int>,
+    @DefaultConfigMap private val defaultConfigMap: Optional<Map<String, Any>>,
+    @DefaultConfigXmlRes private val defaultConfigXmlRes: Optional<Int>,
+    @MinFetchIntervalInSecs private val minFetchIntervalInSecs: Optional<Long>,
+    @Priority priority: Optional<Int>,
 ) : Initializer(priority.orElse(DEFAULT_PRIORITY)) {
 
     override fun init() {
         val settings = remoteConfigSettings {
-            // Set minFetch to 0 seconds, unless specified an explicit value
-            // Reasoning:
-            // My apps fetch remote config at the app start and after that periodically,
-            // e.g. every hour. Optionally, in some rare cases, I may request fetch explicitly,
-            // and then, I want to the latest config, not the cached one. That's why I set it to 0.
-            // OTOH according to the docs, fetching too often might lead to FirebaseRemoteConfigFetchThrottledException:
-            // https://firebase.google.com/docs/remote-config/get-started?platform=android#throttling
-            // So if you  think you might be requesting fetch explicitly, might need to set this value.
-            minimumFetchIntervalInSeconds = minFetchIntervalInSecs.orElse(0)
+            minimumFetchIntervalInSeconds = minFetchIntervalInSecs.orElse(DEFAULT_MIN_FETCH_INTERVAL_IN_SECS)
         }
         firebaseRemoteConfig.setConfigSettingsAsync(settings)
         // set default config (if available)
@@ -62,11 +36,62 @@ class WireFirebaseRemoteConfigInitializer @Inject constructor(
     }
 
     companion object {
-        const val DEFAULT_PRIORITY = 2
+        const val DEFAULT_PRIORITY = 5
+        // Set minFetch to 0 seconds, unless specified an explicit value
+        // My apps fetch remote config at the app start and after that periodically,
+        // e.g. every hour. Optionally, in some rare cases, I may request fetch explicitly,
+        // and then, I want to the latest config, not the cached one. That's why I set it to 0.
+        // OTOH according to the docs, fetching too often might lead to FirebaseRemoteConfigFetchThrottledException:
+        // https://firebase.google.com/docs/remote-config/get-started?platform=android#throttling
+        // So if you  think you might be requesting fetch explicitly, might need to set this value.
+        const val DEFAULT_MIN_FETCH_INTERVAL_IN_SECS = 0L
+    }
+
+    @Retention(AnnotationRetention.RUNTIME)
+    @Qualifier
+    @MustBeDocumented
+    annotation class DefaultConfigMap
+
+    @Retention(AnnotationRetention.RUNTIME)
+    @Qualifier
+    @MustBeDocumented
+    annotation class DefaultConfigXmlRes
+
+    @Retention(AnnotationRetention.RUNTIME)
+    @Qualifier
+    @MustBeDocumented
+    annotation class MinFetchIntervalInSecs
+
+    @Retention(AnnotationRetention.RUNTIME)
+    @Qualifier
+    @MustBeDocumented
+    annotation class Priority
+
+    @Module
+    abstract class BindingModule {
+        @Binds
+        @IntoSet
+        abstract fun bindInitializer(b: FirebaseRemoteConfigInitializer): Initializer
+
+        @BindsOptionalOf
+        @DefaultConfigMap
+        abstract fun bindOptionalDefaultConfigMap(): Map<String, Any>
+
+        @BindsOptionalOf
+        @DefaultConfigXmlRes
+        abstract fun bindOptionalDefaultConfigXmlRes(): Int
+
+        @BindsOptionalOf
+        @MinFetchIntervalInSecs
+        abstract fun bindOptionalMinFetchIntervalInSecs(): Long
+
+        @BindsOptionalOf
+        @Priority
+        abstract fun bindOptionalPriority(): Int
     }
 }
 
-@Module(includes = [WireFirebaseRemoteConfigModule.BindingModule::class])
+@Module(includes = [FirebaseRemoteConfigInitializer.BindingModule::class])
 object WireFirebaseRemoteConfigModule {
 
     @Provides
@@ -76,23 +101,4 @@ object WireFirebaseRemoteConfigModule {
     // No longer need to call FirebaseApp.initializeApp, unless we support an unusual case.
     // https://firebase.google.com/docs/reference/android/com/google/firebase/FirebaseApp
     // https://firebase.google.com/docs/reference/android/com/google/firebase/provider/FirebaseInitProvider
-
-    @Module
-    abstract class BindingModule {
-        @BindsOptionalOf
-        @FirebaseRemoteConfigDefaultConfigMap
-        abstract fun bindOptionalDefaultConfigMap(): Map<String, Any>
-
-        @BindsOptionalOf
-        @FirebaseRemoteConfigDefaultConfigXmlRes
-        abstract fun bindOptionalDefaultConfigXmlRes(): Int
-
-        @BindsOptionalOf
-        @FirebaseRemoteConfigMinFetchIntervalInSecs
-        abstract fun bindOptionalMinFetchIntervalInSecs(): Long
-
-        @BindsOptionalOf
-        @FirebaseRemoteConfigInitializerPriority
-        abstract fun bindOptionalInitializerPriority(): Long
-    }
 }
