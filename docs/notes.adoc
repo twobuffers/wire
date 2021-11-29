@@ -57,6 +57,12 @@ pub   rsa4096/C61684C6B1E96730 2021-11-24 [SC] [expires: 2026-11-23]
       EC028A8F8CC38305E3985757C61684C6B1E96730
 uid                           bot@twobuffers.com
 sub   rsa4096/A5F705A34BC4F66C 2021-11-24 [E] [expires: 2026-11-23]
+
+# distribute public key to keyserver.ububtu.com (mandatory step, without it Signature Validation fails)
+gpg --homedir ./gpghome --keyserver keyserver.ubuntu.com --send-keys EC028A8F8CC38305E3985757C61684C6B1E96730
+# other keyservers
+gpg --homedir ./gpghome --keyserver keys.openpgp.org --send-keys EC028A8F8CC38305E3985757C61684C6B1E96730
+gpg --homedir ./gpghome --keyserver pgp.mit.edu --send-keys EC028A8F8CC38305E3985757C61684C6B1E96730
 ----
 
 
