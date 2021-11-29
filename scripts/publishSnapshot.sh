@@ -19,6 +19,9 @@ pass show proj/wire/circleci-gpg/secring.gpg | base64 -d > "${GPG_SECRING_PATH}"
 # shellcheck disable=SC2064
 trap "rm -f \"${GPG_SECRING_PATH}\"" EXIT
 
-./gradlew -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" \
+# https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/.github/workflows/publish-snapshot.yml
+
+./gradlew --console=verbose --stacktrace \
+          -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" \
           -P"mavenCentralUsername=${MAVEN_CENTRAL_USERNAME}"  -P"mavenCentralPassword=${MAVEN_CENTRAL_PASSWORD}" \
-          clean assemble publish --no-daemon --no-parallel
+          clean assemble publishAllPublicationsToMavenCentralRepository --no-daemon --no-parallel
