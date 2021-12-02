@@ -46,7 +46,9 @@ dependencies {
     implementation Libs.Coroutines.coroutinesPlayServices
     api Libs.AndroidX.Annotation.annotation
     api Libs.Dagger.dagger
+    api Libs.Dagger.daggerAndroid
     kapt Libs.Dagger.daggerCompiler
-    api Libs.Firebase.firebaseConfigKtx
-    api Libs.Firebase.firebaseAnalyticsKtx // Firebase recommends to enable Analytics when using Remote Config
+    kapt Libs.Dagger.daggerAndroidProcessor
+    api Libs.Firebase.firebaseAnalyticsKtx // export: to enable analytics for push notifications
+    api Libs.Firebase.firebaseMessagingKtx // export: FirebaseMessaging, RemoteMessage
 }
