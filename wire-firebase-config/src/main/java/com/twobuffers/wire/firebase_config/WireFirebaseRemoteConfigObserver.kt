@@ -1,4 +1,4 @@
-package com.twobuffers.wire.firebaseconfig
+package com.twobuffers.wire.firebase_config
 
 import android.util.Log
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig

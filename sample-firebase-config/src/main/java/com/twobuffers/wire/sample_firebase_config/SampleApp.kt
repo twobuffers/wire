@@ -1,7 +1,7 @@
-package com.twobuffers.wire.sample_firebaseconfig
+package com.twobuffers.wire.sample_firebase_config
 
 import com.twobuffers.wire.initializer.Initializers
-import com.twobuffers.wire.sample_firebaseconfig.di.createComponent
+import com.twobuffers.wire.sample_firebase_config.di.createComponent
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import javax.inject.Inject

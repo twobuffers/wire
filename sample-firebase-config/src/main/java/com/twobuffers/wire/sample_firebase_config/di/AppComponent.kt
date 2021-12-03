@@ -1,10 +1,10 @@
-package com.twobuffers.wire.sample_firebaseconfig.di
+package com.twobuffers.wire.sample_firebase_config.di
 
 import com.twobuffers.wire.coroutines.WireCoroutinesModule
 import com.twobuffers.wire.di.ApplicationScoped
 import com.twobuffers.wire.initializer.WireInitializerModule
-import com.twobuffers.wire.sample_firebaseconfig.SampleApp
-import com.twobuffers.wire.sample_firebaseconfig.ui.SampleActivityDiModule
+import com.twobuffers.wire.sample_firebase_config.SampleApp
+import com.twobuffers.wire.sample_firebase_config.ui.SampleActivityDiModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule

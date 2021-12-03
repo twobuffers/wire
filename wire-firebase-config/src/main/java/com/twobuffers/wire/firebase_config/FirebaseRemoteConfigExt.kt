@@ -1,4 +1,4 @@
-package com.twobuffers.wire.firebaseconfig
+package com.twobuffers.wire.firebase_config
 
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import kotlinx.coroutines.tasks.await

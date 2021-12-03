@@ -2,15 +2,15 @@
 
 @file:Suppress("unused")
 
-package com.twobuffers.wire.sample_firebaseconfig.di
+package com.twobuffers.wire.sample_firebase_config.di
 
 import android.app.Application
 import android.content.Context
-import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigInitializer
-import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigObserver
-import com.twobuffers.wire.firebaseconfig.WireFirebaseRemoteConfigModule
-import com.twobuffers.wire.firebaseconfig.WireFirebaseRemoteConfigObserverModule
-import com.twobuffers.wire.sample_firebaseconfig.SampleApp
+import com.twobuffers.wire.firebase_config.FirebaseRemoteConfigInitializer
+import com.twobuffers.wire.firebase_config.FirebaseRemoteConfigObserver
+import com.twobuffers.wire.firebase_config.WireFirebaseRemoteConfigModule
+import com.twobuffers.wire.firebase_config.WireFirebaseRemoteConfigObserverModule
+import com.twobuffers.wire.sample_firebase_config.SampleApp
 import dagger.Binds
 import dagger.Module
 import dagger.Provides

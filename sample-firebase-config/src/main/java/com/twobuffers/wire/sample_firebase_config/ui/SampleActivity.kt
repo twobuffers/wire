@@ -1,11 +1,11 @@
-package com.twobuffers.wire.sample_firebaseconfig.ui
+package com.twobuffers.wire.sample_firebase_config.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
-import com.twobuffers.wire.firebaseconfig.FirebaseRemoteConfigObserver
-import com.twobuffers.wire.sample_firebaseconfig.databinding.ActivitySampleBinding
+import com.twobuffers.wire.firebase_config.FirebaseRemoteConfigObserver
+import com.twobuffers.wire.sample_firebase_config.databinding.ActivitySampleBinding
 import dagger.android.support.DaggerAppCompatActivity
 import kotlinx.coroutines.Dispatchers
 import javax.inject.Inject
