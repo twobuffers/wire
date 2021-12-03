@@ -37,6 +37,9 @@ android {
         sourceCompatibility = Versions.JAVA_VERSION_STR
         targetCompatibility = Versions.JAVA_VERSION_STR
     }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
     kotlinOptions {
         jvmTarget = Versions.JAVA_VERSION_STR
     }

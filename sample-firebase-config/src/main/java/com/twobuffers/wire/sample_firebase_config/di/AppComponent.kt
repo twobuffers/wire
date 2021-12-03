@@ -10,7 +10,6 @@ import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.AndroidInjector
 
-
 @ApplicationScoped
 @Component(
     modules = [
