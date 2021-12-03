@@ -37,7 +37,7 @@ android {
 
 dependencies {
     implementation project(':wire-di-annotations-common')
-    implementation project(':wire-async-coroutines-common')
+    implementation project(':wire-coroutines-common')
     implementation project(':wire-utils')
     api project(':wire-initializer')
 

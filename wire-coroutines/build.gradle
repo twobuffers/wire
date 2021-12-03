@@ -30,7 +30,7 @@ android {
 }
 
 dependencies {
-    api project(':wire-async-coroutines-common')
+    api project(':wire-coroutines-common')
     implementation Libs.Kotlin.kotlinStdlib
     implementation Libs.Coroutines.coroutinesCore
     implementation Libs.Coroutines.coroutinesAndroid

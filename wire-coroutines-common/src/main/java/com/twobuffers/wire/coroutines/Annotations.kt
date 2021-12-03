@@ -1,4 +1,4 @@
-package com.twobuffers.wire.async.coroutines
+package com.twobuffers.wire.coroutines
 
 import kotlinx.coroutines.DelicateCoroutinesApi
 import javax.inject.Qualifier

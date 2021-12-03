@@ -3,9 +3,9 @@ package com.twobuffers.wire.firebaseconfig
 import android.util.Log
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
-import com.twobuffers.wire.async.coroutines.ComputationDispatcher
-import com.twobuffers.wire.async.coroutines.ProcessLifetimeCoroutineScope
-import com.twobuffers.wire.async.coroutines.utils.every
+import com.twobuffers.wire.coroutines.ComputationDispatcher
+import com.twobuffers.wire.coroutines.ProcessLifetimeCoroutineScope
+import com.twobuffers.wire.coroutines.every
 import com.twobuffers.wire.di.ApplicationScoped
 import com.twobuffers.wire.initializer.Initializer
 import com.twobuffers.wire.utils.logTag

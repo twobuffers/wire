@@ -1,4 +1,4 @@
-package com.twobuffers.wire.async.coroutines
+package com.twobuffers.wire.coroutines
 
 import androidx.lifecycle.ProcessLifecycleOwner
 import androidx.lifecycle.coroutineScope

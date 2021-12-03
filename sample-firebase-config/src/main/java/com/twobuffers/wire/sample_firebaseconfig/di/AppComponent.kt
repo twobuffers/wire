@@ -1,6 +1,6 @@
 package com.twobuffers.wire.sample_firebaseconfig.di
 
-import com.twobuffers.wire.async.coroutines.WireAsyncCoroutinesModule
+import com.twobuffers.wire.coroutines.WireCoroutinesModule
 import com.twobuffers.wire.di.ApplicationScoped
 import com.twobuffers.wire.initializer.WireInitializerModule
 import com.twobuffers.wire.sample_firebaseconfig.SampleApp
@@ -15,7 +15,7 @@ import dagger.android.AndroidInjector
 @Component(
     modules = [
         // libraries - generic
-        WireAsyncCoroutinesModule::class,
+        WireCoroutinesModule::class,
         WireInitializerModule::class,
         // features
         SampleActivityDiModule::class,

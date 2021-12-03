@@ -1,4 +1,4 @@
-package com.twobuffers.wire.async.coroutines.utils
+package com.twobuffers.wire.coroutines
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.currentCoroutineContext
