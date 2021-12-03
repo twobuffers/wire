@@ -4,6 +4,7 @@ import buildcfg.Versions
 plugins {
     id 'java-library'
     id 'kotlin'
+    id 'kotlin-kapt'
     id 'com.vanniktech.maven.publish'
 }
 
@@ -16,4 +17,5 @@ dependencies {
     implementation Libs.Kotlin.kotlinStdlib
     implementation Libs.Coroutines.coroutinesCore
     api Libs.Dagger.dagger
+    kapt Libs.Dagger.daggerCompiler
 }
