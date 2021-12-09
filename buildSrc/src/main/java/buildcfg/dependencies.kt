@@ -181,6 +181,15 @@ object Libs {
         }
     }
 
+    object AirBnb {
+        const val mavericksVersion = "2.5.0" // https://github.com/airbnb/mavericks/releases
+        const val mavericks = "com.airbnb.android:mavericks:$mavericksVersion"
+        const val epoxyVersion = "5.0.0-beta05" // https://github.com/airbnb/epoxy/releases
+        const val epoxy = "com.airbnb.android:epoxy:$epoxyVersion"
+        const val epoxyDatabinding = "com.airbnb.android:epoxy-databinding:$epoxyVersion"
+        const val epoxyProcessor = "com.airbnb.android:epoxy-processor:$epoxyVersion"
+    }
+
     // SAAS
 
     object GooglePlayServices {
