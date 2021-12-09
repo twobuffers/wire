@@ -12,7 +12,7 @@ android {
     compileSdkVersion buildConfig.compileSdk
     buildToolsVersion buildConfig.buildTools
     defaultConfig {
-        applicationId "com.twobuffers.wire.sample_remoteconfig"
+        applicationId "com.twobuffers.wire.sample_firebase_config"
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
         versionCode 1000001
