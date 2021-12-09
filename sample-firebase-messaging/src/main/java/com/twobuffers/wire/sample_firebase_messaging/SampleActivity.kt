@@ -1,13 +1,17 @@
 package com.twobuffers.wire.sample_firebase_messaging
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import com.airbnb.epoxy.EpoxyAttribute
+import com.airbnb.epoxy.EpoxyModelClass
+import com.airbnb.epoxy.EpoxyModelWithHolder
 import com.airbnb.epoxy.TypedEpoxyController
 import com.twobuffers.wire.di.ActivityScoped
-import com.twobuffers.wire.epoxy.KotlinEpoxyModel
+import com.twobuffers.wire.epoxy.KotlinEpoxyHolder
 import com.twobuffers.wire.firebase_messaging.FirebaseMessagingReceivedMessages
 import com.twobuffers.wire.firebase_messaging.FirebaseMessagingToken
 import com.twobuffers.wire.sample_firebase_messaging.databinding.ActivitySample123Binding
@@ -68,20 +72,27 @@ class SampleActivity : DaggerAppCompatActivity() {
     }
 }
 
-data class ButtonModel(val title: String) : KotlinEpoxyModel(R.layout.list_item) {
-    private val textView by bind<TextView>(R.id.messageContent)
+@SuppressLint("NonConstantResourceId")
+@EpoxyModelClass(layout = R.layout.list_item)
+abstract class MessageModel : EpoxyModelWithHolder<MessageModel.Holder>() {
+    @EpoxyAttribute lateinit var messageContent: String
 
-    override fun bind() {
-        textView.text = title
+    override fun bind(holder: Holder) {
+        holder.messageContent.text = messageContent
+    }
+
+    class Holder : KotlinEpoxyHolder() {
+        val messageContent by bind<TextView>(R.id.messageContent)
     }
 }
 
 internal class SimpleListController : TypedEpoxyController<List<String>>() {
     override fun buildModels(list: List<String>?) {
         (list ?: listOf()).forEach {
-            ButtonModel(it)
-                .id(it)
-                .addTo(this)
+            message {
+                id(it)
+                messageContent(it)
+            }
         }
     }
 }
