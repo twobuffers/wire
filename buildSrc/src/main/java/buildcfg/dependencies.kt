@@ -29,6 +29,9 @@ object GradlePlugins {
 }
 
 object Libs {
+    // https://github.com/JakeWharton/timber/releases
+    const val timber = "com.jakewharton.timber:timber:5.0.1"
+
     object Kotlin {
         const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
         const val kotlinStdlib7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
@@ -66,7 +69,10 @@ object Libs {
         const val inflationInjectProcessor = "com.squareup.inject:inflation-inject-processor:$version"
     }
 
-    const val jsr250Api = "javax.annotation:jsr250-api:1.0" // for Dagger
+    object JavaxAnnotation {
+        const val jsr250Api = "javax.annotation:jsr250-api:1.0"
+        const val javaxAnnotationApi = "javax.annotation:javax.annotation-api:1.3.2"
+    }
 
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.4.0" // https://maven.google.com/web/index.html#androidx.appcompat:appcompat
@@ -179,6 +185,13 @@ object Libs {
             const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
             const val roomTestImpl = "androidx.room:room-testing:$roomVersion"
         }
+    }
+
+    // https://github.com/evant/binding-collection-adapter/tags
+    object BindingCollectionAdapter {
+        const val bindingCollectionAdapter = "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:4.0.0"
+        const val bindingCollectionAdapterRecyclerView = "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:4.0.0"
+        const val bindingCollectionAdapterViewPager2 = "me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-viewpager2:4.0.0"
     }
 
     object AirBnb {

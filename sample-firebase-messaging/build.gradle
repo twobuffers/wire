@@ -1,0 +1,74 @@
+import buildcfg.Libs
+import buildcfg.Versions
+
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    // STEP 1: enable google services plugin (to process google-services.json)
+    id 'com.google.gms.google-services'
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+android {
+    compileSdkVersion buildConfig.compileSdk
+    buildToolsVersion buildConfig.buildTools
+    defaultConfig {
+        applicationId "com.twobuffers.wire.sample_firebase_messaging"
+        minSdkVersion buildConfig.minSdk
+        targetSdkVersion buildConfig.targetSdk
+        versionCode 1000001
+        versionName "1.0.1"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildFeatures {
+        dataBinding true
+    }
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility = Versions.JAVA_VERSION_STR
+        targetCompatibility = Versions.JAVA_VERSION_STR
+    }
+}
+
+tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
+    kotlinOptions {
+        jvmTarget = Versions.JAVA_VERSION_STR
+    }
+}
+
+dependencies {
+    implementation project(':wire-di-annotations') // ActivityScoped
+    implementation project(':wire-coroutines')     // ProcessLifetimeCoroutineScope
+    implementation project(':wire-utils')          // className
+    // STEP 2: add wire libraries
+    implementation project(':wire-initializer')    // Initializers
+    implementation project(':wire-firebase-messaging')
+
+    implementation Libs.Coroutines.coroutinesCore
+
+    implementation Libs.Dagger.dagger
+    implementation Libs.Dagger.daggerAndroid
+    implementation Libs.Dagger.daggerAndroidSupport
+    kapt Libs.Dagger.daggerCompiler
+    kapt Libs.Dagger.daggerAndroidProcessor
+
+    implementation Libs.AndroidX.appcompat
+    implementation Libs.AndroidX.constraintlayout
+    implementation Libs.AndroidX.recyclerview
+    implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx // androidx.lifecycle.lifecycleScope
+
+    implementation project(':wire-epoxy')
+    kapt Libs.AirBnb.epoxyProcessor
+}
