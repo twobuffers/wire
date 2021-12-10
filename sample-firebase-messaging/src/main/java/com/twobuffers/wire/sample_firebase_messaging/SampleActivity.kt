@@ -1,17 +1,13 @@
 package com.twobuffers.wire.sample_firebase_messaging
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
-import android.widget.TextView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
-import com.airbnb.epoxy.EpoxyAttribute
-import com.airbnb.epoxy.EpoxyModelClass
-import com.airbnb.epoxy.EpoxyModelWithHolder
+import com.airbnb.epoxy.EpoxyDataBindingLayouts
+import com.airbnb.epoxy.EpoxyDataBindingPattern
 import com.airbnb.epoxy.TypedEpoxyController
 import com.twobuffers.wire.di.ActivityScoped
-import com.twobuffers.wire.epoxy.KotlinEpoxyHolder
 import com.twobuffers.wire.firebase_messaging.FirebaseMessagingReceivedMessages
 import com.twobuffers.wire.firebase_messaging.FirebaseMessagingToken
 import com.twobuffers.wire.sample_firebase_messaging.databinding.ActivitySample123Binding
@@ -60,7 +56,7 @@ class SampleActivity : DaggerAppCompatActivity() {
             .launchIn(lifecycleScope)
         // on changes of the list update the adapter
         receivedMessages
-            .onEach { controller.setData(it) }
+            .onEach(controller::setData)
             .launchIn(lifecycleScope)
     }
 
@@ -72,26 +68,17 @@ class SampleActivity : DaggerAppCompatActivity() {
     }
 }
 
-@SuppressLint("NonConstantResourceId")
-@EpoxyModelClass(layout = R.layout.list_item)
-abstract class MessageModel : EpoxyModelWithHolder<MessageModel.Holder>() {
-    @EpoxyAttribute lateinit var messageContent: String
-
-    override fun bind(holder: Holder) {
-        holder.messageContent.text = messageContent
-    }
-
-    class Holder : KotlinEpoxyHolder() {
-        val messageContent by bind<TextView>(R.id.messageContent)
-    }
-}
+@Suppress("unused")
+@EpoxyDataBindingPattern(rClass = R::class, layoutPrefix = "view_holder")
+@EpoxyDataBindingLayouts(value = [R.layout.view_holder_message])
+internal interface EpoxyDataBindingConfig
 
 internal class SimpleListController : TypedEpoxyController<List<String>>() {
     override fun buildModels(list: List<String>?) {
         (list ?: listOf()).forEach {
             message {
                 id(it)
-                messageContent(it)
+                text(it)
             }
         }
     }
