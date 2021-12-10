@@ -12,13 +12,14 @@ object Versions {
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/JetBrains/kotlin/releases
-    const val kotlin = "1.5.31"
+    const val kotlin = "1.5.32"
 }
 
 
 object GradlePlugins {
+    // https://developer.android.com/studio/releases/gradle-plugin
     // https://maven.google.com/web/index.html#com.android.tools.build:gradle
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.3"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.4"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     // https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/CHANGELOG.md
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.18.0"
@@ -51,7 +52,7 @@ object Libs {
     }
 
     object Dagger {
-        private const val version = "2.40.1" // https://github.com/google/dagger/releases
+        private const val version = "2.40.5" // https://github.com/google/dagger/releases
         const val dagger = "com.google.dagger:dagger:$version"
         const val daggerAndroid = "com.google.dagger:dagger-android:$version"
         const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:$version"
@@ -75,8 +76,9 @@ object Libs {
     }
 
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.4.0" // https://maven.google.com/web/index.html#androidx.appcompat:appcompat
-        const val recyclerview = "androidx.recyclerview:recyclerview:1.1.0"
+        const val appcompat = "androidx.appcompat:appcompat:1.4.0"                      // https://maven.google.com/web/index.html#androidx.appcompat:appcompat
+        // https://developer.android.com/jetpack/androidx/releases/recyclerview
+        const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"             // https://maven.google.com/web/index.html#androidx.recyclerview:recyclerview
         const val cardview = "androidx.cardview:cardview:1.0.0"
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.2" // https://maven.google.com/web/index.html#androidx.constraintlayout:constraintlayout
         const val swypeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
@@ -216,8 +218,8 @@ object Libs {
     }
 
     object Firebase {
-        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:20.0.0"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
-        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx:20.0.0" // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
+        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:20.0.1"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
+        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx:20.0.1" // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
         const val firebaseAuth = "com.google.firebase:firebase-auth:21.0.1"                  // https://maven.google.com/web/index.html#com.google.firebase:firebase-auth
         const val firebaseBom = "com.google.firebase:firebase-bom:29.0.0"                    // https://maven.google.com/web/index.html#com.google.firebase:firebase-bom
         const val firebaseConfig = "com.google.firebase:firebase-config:21.0.1"              // https://maven.google.com/web/index.html#com.google.firebase:firebase-config

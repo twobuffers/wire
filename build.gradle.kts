@@ -28,6 +28,7 @@ subprojects {
         mavenCentral()
     }
 
+    // https://kotlinlang.org/docs/gradle.html#compiler-options
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
             jvmTarget = buildcfg.Versions.JAVA_VERSION_STR
