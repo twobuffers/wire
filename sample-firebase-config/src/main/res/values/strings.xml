@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Wire Firebase Config Sample</string>
+    <string name="continues_check">(continuously) feature_a_enabled:</string>
+    <string name="checked_once">(once) feature_a_enabled:</string>
 </resources>
