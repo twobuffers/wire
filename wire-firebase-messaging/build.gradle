@@ -30,9 +30,6 @@ android {
         sourceCompatibility = Versions.JAVA_VERSION_STR
         targetCompatibility = Versions.JAVA_VERSION_STR
     }
-    kotlinOptions {
-        jvmTarget = Versions.JAVA_VERSION_STR
-    }
 }
 
 dependencies {

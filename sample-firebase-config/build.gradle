@@ -39,12 +39,6 @@ android {
     }
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        jvmTarget = Versions.JAVA_VERSION_STR
-    }
-}
-
 dependencies {
     implementation project(':wire-di-annotations')
     implementation project(':wire-coroutines')

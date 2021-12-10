@@ -30,10 +30,17 @@ subprojects {
 
     tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
-            freeCompilerArgs = listOf("-Xjsr305=strict")
             jvmTarget = buildcfg.Versions.JAVA_VERSION_STR
+            // Sets up Kotlin’s Java interoperability to strictly follow JSR-305 annotations for increased null safety.
+            freeCompilerArgs = listOf("-Xjsr305=strict")
             // Treat all Kotlin warnings as errors
             allWarningsAsErrors = false
+        }
+    }
+
+    plugins.withType<com.vanniktech.maven.publish.MavenPublishPlugin> {
+        configure<com.vanniktech.maven.publish.MavenPublishPluginExtension> {
+            sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
         }
     }
 }
@@ -53,12 +60,4 @@ tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
     rejectVersionIf { isStable(this.currentVersion) && !isStable(this.candidate.version) }
     // In other words, if the lib uses stable release, we'll get update only on stable versions.
     // If the lib uses any non-stable (alpha/beta/RC), we'll get update about the newer non-stable.
-}
-
-allprojects {
-    plugins.withType<com.vanniktech.maven.publish.MavenPublishPlugin> {
-        configure<com.vanniktech.maven.publish.MavenPublishPluginExtension> {
-            sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
-        }
-    }
 }
