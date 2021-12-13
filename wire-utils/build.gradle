@@ -14,6 +14,11 @@ java {
 
 dependencies {
     implementation Libs.Kotlin.kotlinStdlib
+    implementation Libs.Coroutines.coroutinesCore
+
     api Libs.AndroidX.Annotation.annotation
     api Libs.Dagger.dagger
+
+    testImplementation Libs.junit4
+    testImplementation Libs.Coroutines.coroutinesTest
 }

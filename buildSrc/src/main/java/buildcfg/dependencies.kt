@@ -205,6 +205,13 @@ object Libs {
         const val epoxyProcessor = "com.airbnb.android:epoxy-processor:$epoxyVersion"
     }
 
+    object Splitties {
+        // https://github.com/LouisCAD/Splitties/releases/tag/v3.0.0
+        // https://repo1.maven.org/maven2/com/louiscad/splitties/
+        const val version = "3.0.0"
+        const val splittiesCoroutines = "com.louiscad.splitties:splitties-coroutines:$version"
+    }
+
     // SAAS
 
     object GooglePlayServices {
@@ -235,4 +242,12 @@ object Libs {
             const val gradlePlugin = "com.google.firebase:firebase-crashlytics-gradle:2.3.0"
         }
     }
+
+    // https://search.maven.org/artifact/junit/junit
+    const val junit4 = "junit:junit:4.13.2"
+    const val mockito = "org.mockito:mockito-core:3.3.0"
+    const val mockitoAndroid = "org.mockito:mockito-android:3.3.2"
+    const val mockk = "io.mockk:mockk:1.12.0"
+    const val hamcrest = "org.hamcrest:hamcrest-integration:1.3"
+    const val assertJ = "org.assertj:assertj-core:3.21.0"
 }
