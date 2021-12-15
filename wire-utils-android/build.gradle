@@ -28,6 +28,10 @@ android {
 dependencies {
     implementation Libs.Kotlin.kotlinStdlib
 
-    api Libs.AndroidX.DataBinding.databindingRuntime // DataBindingUtil, ViewDataBinding
+    api Libs.Coroutines.coroutinesCore               // exported: Job
+
+    api Libs.AndroidX.appcompat                      // exported: AppCompatActivity
+    api Libs.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
+    implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx
     api Libs.AndroidX.recyclerview
 }
