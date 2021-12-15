@@ -104,6 +104,11 @@ object Libs {
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
+        object DataBinding {
+            private const val version = "7.0.4"
+            const val databindingRuntime = "androidx.databinding:databinding-runtime:$version"
+        }
+
         object Navigation {
             private const val version = "2.3.5" // latest: 2.4.0-alpha10
             const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
