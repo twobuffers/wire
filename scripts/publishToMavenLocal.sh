@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+#
+# Example:
+#   ./script/publishToMavenLocal
+#   ./script/publishToMavenLocal :wire-utils-android:publishMavenPublicationToMavenLocal
+#
+
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-${0}}")" || exit; pwd -P)"
 SCRIPTS_ROOT_DIR="${SCRIPT_DIR}"
 REPO_ROOT_DIR=$(cd "${SCRIPTS_ROOT_DIR}/.." || exit; pwd -P)
@@ -17,5 +23,7 @@ pass show proj/wire/circleci-gpg/secring.gpg | base64 -d > "${GPG_SECRING_PATH}"
 # shellcheck disable=SC2064
 trap "rm -f \"${GPG_SECRING_PATH}\"" EXIT
 
-./gradlew -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" \
-          clean assemble publishToMavenLocal --no-daemon --no-parallel
+GRADLE_TASK=${1:-"publishToMavenLocal"}
+
+# publish specific library
+./gradlew -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" ${GRADLE_TASK}
