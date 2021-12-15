@@ -1,4 +1,4 @@
-package com.twobuffers.wire.utils
+package com.twobuffers.wire.utils.android
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
