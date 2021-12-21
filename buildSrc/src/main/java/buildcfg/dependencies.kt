@@ -219,6 +219,16 @@ object Libs {
         const val splittiesCoroutines = "com.louiscad.splitties:splitties-coroutines:$version"
     }
 
+    object Guava {
+        // https://search.maven.org/search?q=g:com.google.guava
+        // https://github.com/google/guava/releases/tag/v31.0.1
+        const val version = "31.0.1"
+        const val guavaJre =     "com.google.guava:guava:$version-jre"
+        const val guavaAndroid = "com.google.guava:guava:$version-android"
+        const val guavaTestlibJre =     "com.google.guava:guava-testlib:$version-jre"
+        const val guavaTestlibAndroid = "com.google.guava:guava-testlib:$version-android"
+    }
+
     // SAAS
 
     object GooglePlayServices {
