@@ -219,6 +219,17 @@ object Libs {
         const val splittiesCoroutines = "com.louiscad.splitties:splitties-coroutines:$version"
     }
 
+    object Moshi {
+        // https://search.maven.org/search?q=g:com.squareup.moshi
+        private const val version = "1.13.0"
+        const val moshi = "com.squareup.moshi:moshi:$version"
+        const val moshiAdapters = "com.squareup.moshi:moshi-adapters:$version"
+        const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$version"
+        const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
+    }
+
+    const val gson = "com.google.code.gson:gson:2.8.8"
+
     const val threeTenABP = "com.jakewharton.threetenabp:threetenabp:1.3.1"
     // https://search.maven.org/search?q=g:org.threeten%20AND%20a:threetenbp&core=gav
     const val threeTen = "org.threeten:threetenbp:1.5.2"
