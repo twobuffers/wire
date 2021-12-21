@@ -34,9 +34,13 @@ object Libs {
     const val timber = "com.jakewharton.timber:timber:5.0.1"
 
     object Kotlin {
-        const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-        const val kotlinStdlib7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-        const val kotlinStdlib8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+        const val group = "org.jetbrains.kotlin"
+        const val artifactKotlinStdlib = "kotlin-stdlib"
+        const val artifactKotlinStdlib7 = "kotlin-stdlib7"
+        const val artifactKotlinStdlib8 = "kotlin-stdlib8"
+        const val kotlinStdlib = "$group:$artifactKotlinStdlib:${Versions.kotlin}"
+        const val kotlinStdlib7 = "$group:$artifactKotlinStdlib7:${Versions.kotlin}"
+        const val kotlinStdlib8 = "$group:$artifactKotlinStdlib8:${Versions.kotlin}"
         const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
         const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     }
@@ -217,6 +221,28 @@ object Libs {
         // https://repo1.maven.org/maven2/com/louiscad/splitties/
         const val version = "3.0.0"
         const val splittiesCoroutines = "com.louiscad.splitties:splitties-coroutines:$version"
+    }
+
+    // networking
+
+    object Retrofit {
+        // https://search.maven.org/search?q=g:com.squareup.retrofit2
+        private const val version = "2.9.0"
+        private const val versionConverters = "2.8.1"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+        const val retrofitConverters = "com.squareup.retrofit2:retrofit-converters:$versionConverters"
+        const val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$version"
+        const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+        const val converterScalars = "com.squareup.retrofit2:converter-scalars:$version"
+    }
+
+    object OkHttp {
+        // https://search.maven.org/search?q=g:com.squareup.okhttp3
+        // https://github.com/square/okhttp/blob/master/CHANGELOG.md
+        private const val version = "4.9.3"
+        const val okhttp = "com.squareup.okhttp3:okhttp:$version"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
     }
 
     object Moshi {
