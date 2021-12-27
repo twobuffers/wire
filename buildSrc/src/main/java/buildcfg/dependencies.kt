@@ -75,6 +75,7 @@ object Libs {
         const val javaxAnnotationApi = "javax.annotation:javax.annotation-api:1.3.2"
     }
 
+    // Sources: https://android.googlesource.com/platform/frameworks/support/+/HEAD/
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.4.0"                      // https://maven.google.com/web/index.html#androidx.appcompat:appcompat
         // https://developer.android.com/jetpack/androidx/releases/recyclerview
@@ -85,6 +86,7 @@ object Libs {
         const val legacySupportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
         const val coreKtx = "androidx.core:core-ktx:1.6.0"
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
+        const val startup = "androidx.startup:startup-runtime:1.1.0"
         // optional - Test helpers for LiveData
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
