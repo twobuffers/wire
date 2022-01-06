@@ -62,3 +62,5 @@ tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
     // In other words, if the lib uses stable release, we'll get update only on stable versions.
     // If the lib uses any non-stable (alpha/beta/RC), we'll get update about the newer non-stable.
 }
+
+apply(from = file("$rootDir/gradle/gradleLog.gradle"))

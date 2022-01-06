@@ -1,0 +1,23 @@
+import java.nio.file.Files
+import java.nio.file.Paths
+
+// save build log for CI builds
+// (tweak of https://stackoverflow.com/a/45029487)
+if (System.getenv("CI") == "true") {
+    // create dir if it doesn't exist
+    Files.createDirectories(Paths.get("$rootDir/build/outputs"))
+    // logger
+    def fileLogger = [onOutput: { new File('build/outputs/gradle.log') << it }] as StandardOutputListener
+    // for configuration phase
+    logging.addStandardOutputListener(fileLogger)
+    logging.addStandardErrorListener(fileLogger)
+    // for execution phase
+    gradle.taskGraph.whenReady { taskGraph ->
+        taskGraph.allTasks.each { Task t ->
+            t.doFirst {
+                logging.addStandardOutputListener(fileLogger)
+                logging.addStandardErrorListener(fileLogger)
+            }
+        }
+    }
+}
