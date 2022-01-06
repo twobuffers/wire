@@ -56,12 +56,19 @@ object Libs {
     }
 
     object Dagger {
-        private const val version = "2.40.5" // https://github.com/google/dagger/releases
+        // https://github.com/google/dagger/releases
+        // https://repo1.maven.org/maven2/com/google/dagger/
+        private const val version = "2.40.5"
         const val dagger = "com.google.dagger:dagger:$version"
         const val daggerAndroid = "com.google.dagger:dagger-android:$version"
         const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:$version"
         const val daggerCompiler = "com.google.dagger:dagger-compiler:$version"
         const val daggerAndroidProcessor = "com.google.dagger:dagger-android-processor:$version"
+        const val hiltAndroid = "com.google.dagger:hilt-android:$version"
+        const val hiltAndroidGradlePlugin = "com.google.dagger:hilt-android-gradle-plugin:$version"
+        const val hiltAndroidTesting = "com.google.dagger:hilt-android-testing:$version"
+        const val hiltCompiler = "com.google.dagger:hilt-compiler:$version"
+        const val hiltCore = "com.google.dagger:hilt-core:$version"
     }
 
     object AssistedInject {
@@ -115,12 +122,16 @@ object Libs {
             const val databindingRuntime = "androidx.databinding:databinding-runtime:$version"
         }
 
-        object Navigation {
-            private const val version = "2.3.5" // latest: 2.4.0-alpha10
-            const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
-            const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
-            const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$version"
-            const val navigationSafeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
+        object Hilt {
+            // https://maven.google.com/web/index.html#androidx.hilt
+            private const val version = "1.0.0"
+            const val hiltCommon = "androidx.hilt:hilt-common:$version"
+            const val hiltCompiler = "androidx.hilt:hilt-compiler:$version"
+            const val hiltLifecycleViewmodel = "hilt-lifecycle-viewmodel:$version"
+            const val hiltNavigation = "hilt-navigation:$version"
+            const val hiltNavigationCompose = "hilt-navigation-compose:$version"
+            const val hiltNavigationFragment = "hilt-navigation-fragment:$version"
+            const val hiltWork = "androidx.hilt:hilt-work:$version"
         }
 
         object Lifecycle {
@@ -148,6 +159,14 @@ object Libs {
             const val lifecycleReactivestreams = "androidx.lifecycle:lifecycle-reactivestreams:$version"
             // optional - ReactiveStreams support for LiveData (for Kotlin)
             const val lifecycleReactivestreamsKtx = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$version"
+        }
+
+        object Navigation {
+            private const val version = "2.3.5" // latest: 2.4.0-alpha10
+            const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
+            const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
+            const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+            const val navigationSafeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
         }
 
         object Test {
