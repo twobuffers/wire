@@ -34,9 +34,13 @@ object Libs {
     const val timber = "com.jakewharton.timber:timber:5.0.1"
 
     object Kotlin {
-        const val kotlinStdlib = "org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}"
-        const val kotlinStdlib7 = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
-        const val kotlinStdlib8 = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}"
+        const val group = "org.jetbrains.kotlin"
+        const val artifactKotlinStdlib = "kotlin-stdlib"
+        const val artifactKotlinStdlib7 = "kotlin-stdlib7"
+        const val artifactKotlinStdlib8 = "kotlin-stdlib8"
+        const val kotlinStdlib = "$group:$artifactKotlinStdlib:${Versions.kotlin}"
+        const val kotlinStdlib7 = "$group:$artifactKotlinStdlib7:${Versions.kotlin}"
+        const val kotlinStdlib8 = "$group:$artifactKotlinStdlib8:${Versions.kotlin}"
         const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
         const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
     }
@@ -75,6 +79,7 @@ object Libs {
         const val javaxAnnotationApi = "javax.annotation:javax.annotation-api:1.3.2"
     }
 
+    // Sources: https://android.googlesource.com/platform/frameworks/support/+/HEAD/
     object AndroidX {
         const val appcompat = "androidx.appcompat:appcompat:1.4.0"                      // https://maven.google.com/web/index.html#androidx.appcompat:appcompat
         // https://developer.android.com/jetpack/androidx/releases/recyclerview
@@ -85,6 +90,7 @@ object Libs {
         const val legacySupportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
         const val coreKtx = "androidx.core:core-ktx:1.6.0"
         const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
+        const val startup = "androidx.startup:startup-runtime:1.1.0"
         // optional - Test helpers for LiveData
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
@@ -215,6 +221,53 @@ object Libs {
         // https://repo1.maven.org/maven2/com/louiscad/splitties/
         const val version = "3.0.0"
         const val splittiesCoroutines = "com.louiscad.splitties:splitties-coroutines:$version"
+    }
+
+    // networking
+
+    object Retrofit {
+        // https://search.maven.org/search?q=g:com.squareup.retrofit2
+        private const val version = "2.9.0"
+        private const val versionConverters = "2.8.1"
+        const val retrofit = "com.squareup.retrofit2:retrofit:$version"
+        const val retrofitConverters = "com.squareup.retrofit2:retrofit-converters:$versionConverters"
+        const val adapterRxjava2 = "com.squareup.retrofit2:adapter-rxjava2:$version"
+        const val converterGson = "com.squareup.retrofit2:converter-gson:$version"
+        const val converterMoshi = "com.squareup.retrofit2:converter-moshi:$version"
+        const val converterScalars = "com.squareup.retrofit2:converter-scalars:$version"
+    }
+
+    object OkHttp {
+        // https://search.maven.org/search?q=g:com.squareup.okhttp3
+        // https://github.com/square/okhttp/blob/master/CHANGELOG.md
+        private const val version = "4.9.3"
+        const val okhttp = "com.squareup.okhttp3:okhttp:$version"
+        const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+    }
+
+    object Moshi {
+        // https://search.maven.org/search?q=g:com.squareup.moshi
+        private const val version = "1.13.0"
+        const val moshi = "com.squareup.moshi:moshi:$version"
+        const val moshiAdapters = "com.squareup.moshi:moshi-adapters:$version"
+        const val moshiKotlin = "com.squareup.moshi:moshi-kotlin:$version"
+        const val moshiKotlinCodegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
+    }
+
+    const val gson = "com.google.code.gson:gson:2.8.8"
+
+    const val threeTenABP = "com.jakewharton.threetenabp:threetenabp:1.3.1"
+    // https://search.maven.org/search?q=g:org.threeten%20AND%20a:threetenbp&core=gav
+    const val threeTen = "org.threeten:threetenbp:1.5.2"
+
+    object Guava {
+        // https://search.maven.org/search?q=g:com.google.guava
+        // https://github.com/google/guava/releases/tag/v31.0.1
+        const val version = "31.0.1"
+        const val guavaJre =     "com.google.guava:guava:$version-jre"
+        const val guavaAndroid = "com.google.guava:guava:$version-android"
+        const val guavaTestlibJre =     "com.google.guava:guava-testlib:$version-jre"
+        const val guavaTestlibAndroid = "com.google.guava:guava-testlib:$version-android"
     }
 
     // SAAS

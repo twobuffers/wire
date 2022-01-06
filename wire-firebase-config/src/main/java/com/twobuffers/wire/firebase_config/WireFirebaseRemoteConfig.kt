@@ -1,5 +1,6 @@
 package com.twobuffers.wire.firebase_config
 
+import com.google.common.base.Optional
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.ktx.remoteConfig
@@ -11,21 +12,21 @@ import dagger.BindsOptionalOf
 import dagger.Module
 import dagger.Provides
 import dagger.multibindings.IntoSet
-import java.util.Optional
 import javax.inject.Inject
 import javax.inject.Qualifier
 
 class FirebaseRemoteConfigInitializer @Inject constructor(
     private val firebaseRemoteConfig: FirebaseRemoteConfig,
+    // TODO: Use Guava's Optional
     @DefaultConfigMap private val defaultConfigMap: Optional<Map<String, Any>>,
     @DefaultConfigXmlRes private val defaultConfigXmlRes: Optional<Int>,
     @MinFetchIntervalInSecs private val minFetchIntervalInSecs: Optional<Long>,
     @Priority priority: Optional<Int>,
-) : Initializer(priority.orElse(DEFAULT_PRIORITY)) {
+) : Initializer(priority.or(DEFAULT_PRIORITY)) {
 
     override fun init() {
         val settings = remoteConfigSettings {
-            minimumFetchIntervalInSeconds = minFetchIntervalInSecs.orElse(DEFAULT_MIN_FETCH_INTERVAL_IN_SECS)
+            minimumFetchIntervalInSeconds = minFetchIntervalInSecs.or(DEFAULT_MIN_FETCH_INTERVAL_IN_SECS)
         }
         firebaseRemoteConfig.setConfigSettingsAsync(settings)
         // set default config (if available)

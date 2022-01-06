@@ -1,9 +1,9 @@
 buildscript {
     extra["buildConfig"] = mapOf(
-        "compileSdk" to 31,
-        "minSdk" to 25,
-        "targetSdk" to 30,
-        "buildTools" to "31.0.0"
+        "compileSdk" to AndroidConfig.COMPILE_SDK_VERSION,
+        "minSdk" to AndroidConfig.MIN_SDK_VERSION,
+        "targetSdk" to AndroidConfig.TARGET_SDK_VERSION,
+        "buildTools" to AndroidConfig.BUILD_TOOLS_VERSION
     )
     repositories {
         google()

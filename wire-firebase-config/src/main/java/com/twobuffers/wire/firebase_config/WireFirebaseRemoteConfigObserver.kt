@@ -1,6 +1,7 @@
 package com.twobuffers.wire.firebase_config
 
 import android.util.Log
+import com.google.common.base.Optional
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigValue
 import com.twobuffers.wire.coroutines.ComputationDispatcher
@@ -13,7 +14,6 @@ import dagger.Binds
 import dagger.BindsOptionalOf
 import dagger.Module
 import dagger.multibindings.IntoSet
-import java.util.Optional
 import javax.inject.Inject
 import javax.inject.Qualifier
 import kotlinx.coroutines.CoroutineDispatcher
@@ -38,7 +38,7 @@ class FirebaseRemoteConfigObserver @Inject constructor(
     val configValues = _configValues.asStateFlow()
 
     fun init() {
-        val intervalInMillis = checkIntervalInSecs.orElse(DEFAULT_CHECK_INTERVAL) * 1000
+        val intervalInMillis = checkIntervalInSecs.or(DEFAULT_CHECK_INTERVAL) * 1000
         context.every(repeatMillis = intervalInMillis) {
             update()
             // TODO: replace this log with Timber
@@ -79,7 +79,7 @@ class FirebaseRemoteConfigObserver @Inject constructor(
 class FirebaseRemoteConfigObserverInitializer @Inject constructor(
     private val firebaseRemoteConfigObserver: FirebaseRemoteConfigObserver,
     @Priority priority: Optional<Int>,
-) : Initializer(priority.orElse(DEFAULT_PRIORITY)) {
+) : Initializer(priority.or(DEFAULT_PRIORITY)) {
     override fun init() {
         firebaseRemoteConfigObserver.init()
     }

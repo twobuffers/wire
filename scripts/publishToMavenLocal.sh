@@ -26,4 +26,4 @@ trap "rm -f \"${GPG_SECRING_PATH}\"" EXIT
 GRADLE_TASK=${1:-"publishToMavenLocal"}
 
 # publish specific library
-./gradlew -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" ${GRADLE_TASK}
+./gradlew --console=verbose -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" ${GRADLE_TASK}
