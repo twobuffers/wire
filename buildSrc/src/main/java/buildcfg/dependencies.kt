@@ -12,14 +12,15 @@ object Versions {
 
     // https://kotlinlang.org/docs/releases.html#release-details
     // https://github.com/JetBrains/kotlin/releases
-    const val kotlin = "1.5.32"
+    const val kotlin = "1.6.10"
 }
 
 
 object GradlePlugins {
     // https://developer.android.com/studio/releases/gradle-plugin
     // https://maven.google.com/web/index.html#com.android.tools.build:gradle
-    const val androidGradlePlugin = "com.android.tools.build:gradle:7.0.4"
+    const val agpVersion = "7.1.0"
+    const val androidGradlePlugin = "com.android.tools.build:gradle:$agpVersion"
     const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     // https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/CHANGELOG.md
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.18.0"
