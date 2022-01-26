@@ -289,6 +289,13 @@ object Libs {
         const val guavaTestlibAndroid = "com.google.guava:guava-testlib:$version-android"
     }
 
+    // https://mvnrepository.com/artifact/io.reactivex.rxjava2
+    object RxJava {
+        const val rxjava = "io.reactivex.rxjava2:rxjava:2.2.21"
+        const val rxandroid = "io.reactivex.rxjava2:rxandroid:2.1.1"
+        const val rxkotlin = "io.reactivex.rxjava2:rxkotlin:2.4.0"
+    }
+
     // SAAS
 
     object GooglePlayServices {
