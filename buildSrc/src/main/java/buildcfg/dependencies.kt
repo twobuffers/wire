@@ -60,6 +60,12 @@ object Libs {
         // https://github.com/google/dagger/releases
         // https://repo1.maven.org/maven2/com/google/dagger/
         private const val version = "2.40.5"
+        // WARNING:
+        // There is an issue introduced in 2.40.4, that caused build failure.
+        // The issue happen  to Jetpack Compose and Dagger.
+        // More about the issue: https://github.com/google/dagger/issues/3090
+        // An example build scan: https://scans.gradle.com/s/cndq2gclvgm4m/failure
+        // Workaround: use 'api' for 'androidx.compose.runtime:runtime' from modules, or add it to the app module.
         const val dagger = "com.google.dagger:dagger:$version"
         const val daggerAndroid = "com.google.dagger:dagger-android:$version"
         const val daggerAndroidSupport = "com.google.dagger:dagger-android-support:$version"
@@ -93,38 +99,107 @@ object Libs {
         // https://developer.android.com/jetpack/androidx/releases/recyclerview
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"             // https://maven.google.com/web/index.html#androidx.recyclerview:recyclerview
         const val cardview = "androidx.cardview:cardview:1.0.0"
-        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.2" // https://maven.google.com/web/index.html#androidx.constraintlayout:constraintlayout
+        // https://developer.android.com/jetpack/androidx/releases/constraintlayout
+        const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.3" // https://maven.google.com/web/index.html#androidx.constraintlayout:constraintlayout
         const val swypeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
         const val legacySupportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
         const val coreKtx = "androidx.core:core-ktx:1.6.0"
-        const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"
+        const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"                   // https://maven.google.com/web/index.html#androidx.viewpager2:viewpager2
         const val startup = "androidx.startup:startup-runtime:1.1.0"
         // optional - Test helpers for LiveData
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
 
-        object Annotation {
-            const val annotation = "androidx.annotation:annotation:1.3.0" // https://maven.google.com/web/index.html#androidx.annotation:annotation
-        }
 
+
+        // https://developer.android.com/jetpack/androidx/releases/activity
+        // https://maven.google.com/web/index.html#androidx.activity
         object Activity {
-            private const val version = "1.2.2"
+            private const val version = "1.4.0"
             const val activity = "androidx.activity:activity:$version"
             const val activityKtx = "androidx.activity:activity-ktx:$version"
+            const val activityCompose = "androidx.activity:activity-compose:$version"
         }
 
+        // https://maven.google.com/web/index.html#androidx.annotation
+        object Annotation {
+            const val annotation = "androidx.annotation:annotation:1.3.0"
+        }
+
+        // https://maven.google.com/web/index.html#android.arch.core
+        object ArchCore {
+            // https://mvnrepository.com/artifact/androidx.arch.core/core-testing
+            const val coreTesting = "androidx.arch.core:core-testing:2.1.0"
+        }
+
+        object Compose {
+            // Versions: https://developer.android.google.cn/jetpack/androidx/releases/compose?hl=en#versions
+            // Sources: https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-compose-release/
+            const val version = "1.1.0-rc01" // stable: 1.0.5 (but requires downgrade of kotlin to 1.5.31
+
+            // https://developer.android.com/jetpack/androidx/releases/compose-animation
+            // https://maven.google.com/web/index.html#androidx.compose.animation
+            object Animation {
+                const val animation = "androidx.compose.animation:animation:$version"
+            }
+            // https://developer.android.com/jetpack/androidx/releases/compose-compiler
+            // https://maven.google.com/web/index.html#androidx.compose.compiler
+            object Compiler {
+                // 1.0.5      - requires Kotlin 1.5.31
+                // 1.1.0-rc01 - requires Kotlin 1.6.0
+                // 1.1.0-rc02 - requires Kotlin 1.6.10
+                const val version = "1.1.0-rc02"
+                const val compiler = "androidx.compose.compiler:compiler:$version"
+                // NOTE: Compose Compiler's version can be set explicitly
+                //       with android.composeOptions.kotlinCompilerExtensionVersion.
+            }
+            // https://developer.android.com/jetpack/androidx/releases/compose-foundation
+            // https://maven.google.com/web/index.html#androidx.compose.foundation
+            object Foundation {
+                const val foundation = "androidx.compose.foundation:foundation:$version"
+            }
+            // https://developer.android.com/jetpack/androidx/releases/compose-material
+            // https://maven.google.com/web/index.html#androidx.compose.material
+            object Material {
+                const val material = "androidx.compose.material:material:$version"
+                const val materialIconsCore = "androidx.compose.material:material-icons-core:$version"
+                const val materialIconsExtended = "androidx.compose.material:material-icons-extended:$version"
+            }
+            // https://developer.android.com/jetpack/androidx/releases/compose-runtime
+            // https://maven.google.com/web/index.html#androidx.compose.runtime
+            object Runtime {
+                const val runtime = "androidx.compose.runtime:runtime:$version"
+                const val runtimeLivedata = "androidx.compose.runtime:runtime-livedata:$version"
+                const val runtimeRxjava2 = "androidx.compose.runtime:runtime-rxjava2:$version"
+            }
+            // https://developer.android.com/jetpack/androidx/releases/compose-ui
+            // https://maven.google.com/web/index.html#androidx.compose.ui
+            object Ui {
+                const val ui = "androidx.compose.ui:ui:$version"
+                // Tooling support (Previews, etc.)
+                const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
+                const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
+            }
+        }
+
+        // https://maven.google.com/web/index.html#androidx.databinding
+        object DataBinding {
+            // https://mvnrepository.com/artifact/androidx.databinding/databinding-compiler
+            private const val version = GradlePlugins.agpVersion
+            const val databindingCompiler = "androidx.databinding:databinding-compiler:$version"
+            const val databindingRuntime = "androidx.databinding:databinding-runtime:$version"
+        }
+
+        // https://developer.android.com/jetpack/androidx/releases/fragment
+        // https://maven.google.com/web/index.html#androidx.fragment
         object Fragment {
-            private const val version = "1.3.6"
+            private const val version = "1.4.0"
             const val fragment = "androidx.fragment:fragment:$version"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
 
-        object DataBinding {
-            private const val version = "7.0.4"
-            const val databindingRuntime = "androidx.databinding:databinding-runtime:$version"
-        }
-
+        // https://developer.android.com/jetpack/androidx/releases/hilt
+        // https://maven.google.com/web/index.html#androidx.hilt
         object Hilt {
-            // https://maven.google.com/web/index.html#androidx.hilt
             private const val version = "1.0.0"
             const val hiltCommon = "androidx.hilt:hilt-common:$version"
             const val hiltCompiler = "androidx.hilt:hilt-compiler:$version"
@@ -135,17 +210,20 @@ object Libs {
             const val hiltWork = "androidx.hilt:hilt-work:$version"
         }
 
+        // https://developer.android.com/jetpack/androidx/releases/lifecycle
+        // https://maven.google.com/web/index.html#androidx.lifecycle
         object Lifecycle {
-            private const val version = "2.4.0" // https://maven.google.com/web/index.html#androidx.lifecycle
+            private const val version = "2.4.0"
             // ViewModel and LiveData
             const val lifecycleCommon = "androidx.lifecycle:lifecycle-common:$version"
             const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$version"
             const val lifecycleProcess = "androidx.lifecycle:lifecycle-process:$version"
             // alternatively - just ViewModel
             const val lifecycleViewmodel = "androidx.lifecycle:lifecycle-viewmodel:$version"
+            const val lifecycleViewmodelCompose = "androidx.lifecycle:lifecycle-viewmodel-compose:$version"
             // alternatively - just ViewModel (for Kotlin)
             const val lifecycleViewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:$version"
-            const val service = "androidx.lifecycle:lifecycle-service:$version"
+            const val lifecycleService = "androidx.lifecycle:lifecycle-service:$version"
             // alternatively - just LiveData
             const val lifecycleLivedata = "androidx.lifecycle:lifecycle-livedata:$version"
             // alternatively - Lifecycles only (no ViewModel or LiveData). Some UI
@@ -162,12 +240,31 @@ object Libs {
             const val lifecycleReactivestreamsKtx = "androidx.lifecycle:lifecycle-reactivestreams-ktx:$version"
         }
 
+        // https://developer.android.com/jetpack/androidx/releases/navigation
+        // https://maven.google.com/web/index.html#androidx.navigation
         object Navigation {
-            private const val version = "2.3.5" // latest: 2.4.0-alpha10
+            private const val version = "2.4.0-rc01" // stable: "2.3.5"
             const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
             const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
             const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$version"
+            // NOTE: keep in mind about incompatibility of safe-args v2.4.0-rc01 with AGP 7.1.0 (more: https://stackoverflow.com/a/70857477)
             const val navigationSafeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
+        }
+
+        // https://maven.google.com/web/index.html#androidx.room
+        // https://developer.android.com/jetpack/androidx/releases/room
+        object Room {
+            private const val roomVersion = "2.4.1"
+            const val roomKtx = "androidx.room:room-ktx:$roomVersion"
+            const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
+            const val roomTestImpl = "androidx.room:room-testing:$roomVersion"
+        }
+
+        // https://maven.google.com/web/index.html#androidx.security
+        object Security {
+            const val securityCrypto = "androidx.security:security-crypto:1.1.0-alpha03"                          // https://maven.google.com/web/index.html#androidx.security:security-crypto
+            const val securityCryptoKtx = "androidx.security:security-crypto:1.1.0-alpha03"                       // https://maven.google.com/web/index.html#androidx.security:security-crypto-ktx
+            const val securityIdentityCredential = "androidx.security:security-identity-credential:1.0.0-alpha03" // https://maven.google.com/web/index.html#androidx.security:security-identity-credential
         }
 
         object Test {
@@ -203,20 +300,6 @@ object Libs {
             const val uiautomator = "androidx.test.uiautomator:uiautomator:2.2.0"
             // Orchestrator
             const val orchestrator = "androidx.test:orchestrator:1.2.0" // latest: 1.3.0-alpha05
-        }
-
-        object Security {
-            const val securityCrypto = "androidx.security:security-crypto:1.1.0-alpha03" // 1.0.0-rc04
-            const val securityIdentityCredential = "androidx.security:security-identity-credential:1.0.0-alpha01"
-        }
-
-        // Persistence
-
-        object Room {
-            private const val roomVersion = "2.3.0"
-            const val roomKtx = "androidx.room:room-ktx:$roomVersion"
-            const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
-            const val roomTestImpl = "androidx.room:room-testing:$roomVersion"
         }
     }
 
