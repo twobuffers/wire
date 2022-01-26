@@ -34,4 +34,5 @@ dependencies {
     api Libs.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
     implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx
     api Libs.AndroidX.recyclerview
+    compileOnly Libs.AndroidX.viewpager2             // clearAdapterOnViewDestroy
 }
