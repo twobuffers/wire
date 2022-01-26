@@ -8,12 +8,6 @@ plugins {
     id 'com.vanniktech.maven.publish'
 }
 
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        freeCompilerArgs += ['-Xopt-in=kotlin.RequiresOptIn',]
-    }
-}
-
 android {
     compileSdkVersion buildConfig.compileSdk
     buildToolsVersion buildConfig.buildTools
@@ -33,19 +27,12 @@ android {
 }
 
 dependencies {
-    implementation project(':wire-di-annotations-common')
-    implementation project(':wire-coroutines')
-    implementation project(':wire-utils')
-    api project(':wire-initializer')
-
+    api project(':wire-coroutines')
     implementation Libs.Kotlin.kotlinStdlib
     implementation Libs.Coroutines.coroutinesCore
-    implementation Libs.Coroutines.coroutinesPlayServices
-    api Libs.AndroidX.Annotation.annotation
+    implementation Libs.Coroutines.coroutinesAndroid
+    implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx // androidx.lifecycle.coroutineScope
+    implementation Libs.AndroidX.Lifecycle.lifecycleProcess    // androidx.lifecycle.ProcessLifecycleOwner
     api Libs.Dagger.dagger
     kapt Libs.Dagger.daggerCompiler
-    api Libs.Firebase.firebaseConfigKtx
-    api Libs.Firebase.firebaseAnalyticsKtx // Firebase recommends to enable Analytics when using Remote Config
-
-    api Libs.Guava.guavaAndroid
 }

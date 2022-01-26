@@ -43,8 +43,8 @@ android {
 }
 
 dependencies {
-    implementation project(':wire-di-annotations') // ActivityScoped
-    implementation project(':wire-coroutines')     // ProcessLifetimeCoroutineScope
+    implementation project(':wire-di-annotations')     // ActivityScoped
+    implementation project(':wire-coroutines-android') // ProcessLifetimeCoroutineScope
     implementation project(':wire-utils')          // className
     // STEP 2: add wire libraries
     implementation project(':wire-initializer')    // Initializers
