@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Add Fragment.createAutoDisposableOnViewDestroy (wire-rxjava-android)
+
 ## [0.3.1] - 2021-01-27
 
 - Add Disposable.disposeOnViewDestroy (wire-rxjava-android)
