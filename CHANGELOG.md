@@ -2,12 +2,16 @@
 
 ## [Unreleased]
 
+## [0.3.1] - 2021-01-27
+
+- Add Disposable.disposeOnViewDestroy (wire-rxjava-android)
+
 ## [0.3.0] - 2021-01-26
 
 - Add ViewBindingAware
 - Rename wire-coroutines-common & wire-coroutines to wire-coroutines & wire-coroutines-android
 - Add Fragment.clearAdapterOnViewDestroy
-- Add small wire-rxjava
+- Add Disposable.addTo (wire-rxjava)
 
 ## [0.2.0] - 2021-01-06
 
@@ -37,7 +41,8 @@
 - Add wire-utils
 
 
-[Unreleased]: https://github.com/twobuffers/wire/compare/0.3.0...HEAD
+[Unreleased]: https://github.com/twobuffers/wire/compare/0.3.1...HEAD
+[0.3.1]: https://github.com/twobuffers/wire/releases/tag/0.3.1
 [0.3.0]: https://github.com/twobuffers/wire/releases/tag/0.3.0
 [0.2.0]: https://github.com/twobuffers/wire/releases/tag/0.2.0
 [0.1.2]: https://github.com/twobuffers/wire/releases/tag/0.1.2
