@@ -2,6 +2,9 @@
 
 ## [Unreleased]
 
+- Change `Lifecycle.onEvent` API (it returns LifecycleObserver now)
+- Add `Lifecycle.cancel` (to cancel onEvent action)
+
 ## [0.4.0] - 2021-03-08
 
 - Change API of every* fns (breaking change)

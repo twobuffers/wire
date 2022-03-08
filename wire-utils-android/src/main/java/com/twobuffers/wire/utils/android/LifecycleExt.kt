@@ -8,6 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Lifecycle.Event
 import androidx.lifecycle.Lifecycle.Event.ON_DESTROY
 import androidx.lifecycle.LifecycleEventObserver
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.RecyclerView
@@ -17,9 +18,10 @@ import kotlinx.coroutines.Job
 
 // Regular
 
-fun Lifecycle.onEvent(event: Event, block: (source: LifecycleOwner) -> Unit) {
+fun Lifecycle.onEvent(event: Event, block: (source: LifecycleOwner) -> Unit): LifecycleEventObserver {
     val o = LifecycleEventObserver { source, receivedEvent -> if (receivedEvent == event) block(source) }
     addObserver(o)
+    return o
 }
 
 inline fun LifecycleOwner.onEvent(event: Event, noinline block: (source: LifecycleOwner) -> Unit) =
@@ -30,6 +32,9 @@ inline fun Fragment.onViewEvent(event: Event, noinline block: (source: Lifecycle
 
 inline fun LifecycleOwner.onDestroy(noinline block: (source: LifecycleOwner) -> Unit) = onEvent(ON_DESTROY, block)
 inline fun Fragment.onViewDestroy(noinline block: (source: LifecycleOwner) -> Unit) = onViewEvent(ON_DESTROY, block)
+
+/// Cancels previously set onEvent or onViewEvent action.
+fun Lifecycle.cancel(observer: LifecycleObserver) = removeObserver(observer)
 
 // Coroutines
 
