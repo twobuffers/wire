@@ -9,23 +9,17 @@ import org.gradle.api.JavaVersion
 object Versions {
     const val JAVA_VERSION_STR = "11"
     val JAVA_VERSION = JavaVersion.VERSION_11
-
-    // https://kotlinlang.org/docs/releases.html#release-details
-    // https://github.com/JetBrains/kotlin/releases
-    const val kotlin = "1.6.10"
 }
-
 
 object GradlePlugins {
     // https://developer.android.com/studio/releases/gradle-plugin
     // https://maven.google.com/web/index.html#com.android.tools.build:gradle
-    const val agpVersion = "7.1.0"
+    const val agpVersion = "7.1.2"
     const val androidGradlePlugin = "com.android.tools.build:gradle:$agpVersion"
-    const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
     // https://github.com/vanniktech/gradle-maven-publish-plugin/blob/master/CHANGELOG.md
-    const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.18.0"
+    const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.19.0"
     // https://github.com/ben-manes/gradle-versions-plugin/releases
-    const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.39.0"
+    const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.42.0"
     // https://maven.google.com/web/index.html#com.google.gms:google-services
     const val googleServices = "com.google.gms:google-services:4.3.10"
 }
@@ -34,20 +28,48 @@ object Libs {
     // https://github.com/JakeWharton/timber/releases
     const val timber = "com.jakewharton.timber:timber:5.0.1"
 
+    object Google {
+        object Android {
+            // https://maven.google.com/web/index.html#com.google.android.material
+            object Material {
+                const val material = "com.google.android.material:material:1.5.0"
+                const val materialObsolete = "com.google.android.material:material:1.0.0"
+                // When using AppCompat theme w/ Compose (https://developer.android.com/jetpack/compose/interop/adding#reuse-view):
+                const val composeThemeAdapter = "com.google.android.material:compose-theme-adapter:${AndroidX.Compose.version}"
+            }
+            const val playCore = "com.google.android.play:core:1.6.5"
+        }
+        // https://mvnrepository.com/artifact/com.google.accompanist
+        // (strangely this com.google.accompanist is not available on maven.google.com)
+        object Accompanist {
+            private const val version = "0.20.3"
+            // When using a MDC theme w/ Compose (https://developer.android.com/jetpack/compose/interop/adding#reuse-view):
+            const val accompanistAppcompatTheme = "com.google.accompanist:accompanist-appcompat-theme:$version"
+        }
+        const val zxingCore = "com.google.zxing:core:3.4.1" // 3.3.2 is the last working with zxing-android-embedded:3.6.0
+        const val truth = "com.google.truth:truth:1.0.1"
+    }
+
+    // https://kotlinlang.org/docs/releases.html#release-details
+    // https://github.com/JetBrains/kotlin/releases
     object Kotlin {
+        const val version = "1.6.10"
         const val group = "org.jetbrains.kotlin"
         const val artifactKotlinStdlib = "kotlin-stdlib"
         const val artifactKotlinStdlib7 = "kotlin-stdlib7"
         const val artifactKotlinStdlib8 = "kotlin-stdlib8"
-        const val kotlinStdlib = "$group:$artifactKotlinStdlib:${Versions.kotlin}"
-        const val kotlinStdlib7 = "$group:$artifactKotlinStdlib7:${Versions.kotlin}"
-        const val kotlinStdlib8 = "$group:$artifactKotlinStdlib8:${Versions.kotlin}"
-        const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:${Versions.kotlin}"
-        const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:${Versions.kotlin}"
+        const val kotlinStdlib = "$group:$artifactKotlinStdlib:$version"
+        const val kotlinStdlib7 = "$group:$artifactKotlinStdlib7:$version"
+        const val kotlinStdlib8 = "$group:$artifactKotlinStdlib8:$version"
+        const val kotlinReflect = "org.jetbrains.kotlin:kotlin-reflect:$version"
+        const val kotlinTestJunit = "org.jetbrains.kotlin:kotlin-test-junit:$version"
+        const val kotlinGradlePlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$version"
     }
 
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/
+    // https://search.maven.org/search?q=g:org.jetbrains.kotlinx%20AND%20a:kotlinx-coroutines*
     object Coroutines {
-        private const val version = "1.5.2"
+        private const val version = "1.6.0"
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
         const val coroutinesRx2 = "org.jetbrains.kotlinx:kotlinx-coroutines-rx2:$version"
         const val coroutinesAndroid = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
@@ -59,7 +81,7 @@ object Libs {
     object Dagger {
         // https://github.com/google/dagger/releases
         // https://repo1.maven.org/maven2/com/google/dagger/
-        private const val version = "2.40.5"
+        private const val version = "2.41"
         // WARNING:
         // There is an issue introduced in 2.40.4, that caused build failure.
         // The issue happen  to Jetpack Compose and Dagger.
@@ -95,21 +117,19 @@ object Libs {
 
     // Sources: https://android.googlesource.com/platform/frameworks/support/+/HEAD/
     object AndroidX {
-        const val appcompat = "androidx.appcompat:appcompat:1.4.0"                      // https://maven.google.com/web/index.html#androidx.appcompat:appcompat
+        const val appcompat = "androidx.appcompat:appcompat:1.4.1"                      // https://maven.google.com/web/index.html#androidx.appcompat:appcompat
         // https://developer.android.com/jetpack/androidx/releases/recyclerview
         const val recyclerview = "androidx.recyclerview:recyclerview:1.2.1"             // https://maven.google.com/web/index.html#androidx.recyclerview:recyclerview
         const val cardview = "androidx.cardview:cardview:1.0.0"
         // https://developer.android.com/jetpack/androidx/releases/constraintlayout
         const val constraintlayout = "androidx.constraintlayout:constraintlayout:2.1.3" // https://maven.google.com/web/index.html#androidx.constraintlayout:constraintlayout
-        const val swypeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+        const val swypeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0" // latest: 1.2.0-alpha01
         const val legacySupportV4 = "androidx.legacy:legacy-support-v4:1.0.0"
-        const val coreKtx = "androidx.core:core-ktx:1.6.0"
-        const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0"                   // https://maven.google.com/web/index.html#androidx.viewpager2:viewpager2
+        const val coreKtx = "androidx.core:core-ktx:1.7.0"
+        const val viewpager2 = "androidx.viewpager2:viewpager2:1.0.0" // latest: 1.1.0-alpha01
         const val startup = "androidx.startup:startup-runtime:1.1.0"
         // optional - Test helpers for LiveData
         const val archCoreTesting = "androidx.arch.core:core-testing:2.1.0"
-
-
 
         // https://developer.android.com/jetpack/androidx/releases/activity
         // https://maven.google.com/web/index.html#androidx.activity
@@ -134,7 +154,7 @@ object Libs {
         object Compose {
             // Versions: https://developer.android.google.cn/jetpack/androidx/releases/compose?hl=en#versions
             // Sources: https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-compose-release/
-            const val version = "1.1.0-rc01" // stable: 1.0.5 (but requires downgrade of kotlin to 1.5.31
+            const val version = "1.1.1"
 
             // https://developer.android.com/jetpack/androidx/releases/compose-animation
             // https://maven.google.com/web/index.html#androidx.compose.animation
@@ -147,7 +167,7 @@ object Libs {
                 // 1.0.5      - requires Kotlin 1.5.31
                 // 1.1.0-rc01 - requires Kotlin 1.6.0
                 // 1.1.0-rc02 - requires Kotlin 1.6.10
-                const val version = "1.1.0-rc02"
+                const val version = Compose.version
                 const val compiler = "androidx.compose.compiler:compiler:$version"
                 // NOTE: Compose Compiler's version can be set explicitly
                 //       with android.composeOptions.kotlinCompilerExtensionVersion.
@@ -177,6 +197,7 @@ object Libs {
                 const val ui = "androidx.compose.ui:ui:$version"
                 // Tooling support (Previews, etc.)
                 const val uiTooling = "androidx.compose.ui:ui-tooling:$version"
+                const val uiToolingPreview = "androidx.compose.ui:ui-tooling-preview:$version"
                 const val uiTestJunit4 = "androidx.compose.ui:ui-test-junit4:$version"
             }
         }
@@ -192,7 +213,7 @@ object Libs {
         // https://developer.android.com/jetpack/androidx/releases/fragment
         // https://maven.google.com/web/index.html#androidx.fragment
         object Fragment {
-            private const val version = "1.4.0"
+            private const val version = "1.4.1"
             const val fragment = "androidx.fragment:fragment:$version"
             const val fragmentKtx = "androidx.fragment:fragment-ktx:$version"
         }
@@ -212,8 +233,10 @@ object Libs {
 
         // https://developer.android.com/jetpack/androidx/releases/lifecycle
         // https://maven.google.com/web/index.html#androidx.lifecycle
+        // https://mvnrepository.com/artifact/androidx.lifecycle
+        // Sources: https://android.googlesource.com/platform/frameworks/support/+/refs/heads/androidx-main/lifecycle/
         object Lifecycle {
-            private const val version = "2.4.0"
+            private const val version = "2.4.1"
             // ViewModel and LiveData
             const val lifecycleCommon = "androidx.lifecycle:lifecycle-common:$version"
             const val lifecycleExtensions = "androidx.lifecycle:lifecycle-extensions:$version"
@@ -243,18 +266,17 @@ object Libs {
         // https://developer.android.com/jetpack/androidx/releases/navigation
         // https://maven.google.com/web/index.html#androidx.navigation
         object Navigation {
-            private const val version = "2.4.0-rc01" // stable: "2.3.5"
+            private const val version = "2.4.1"
             const val navigationFragment = "androidx.navigation:navigation-fragment:$version"
             const val navigationFragmentKtx = "androidx.navigation:navigation-fragment-ktx:$version"
             const val navigationUiKtx = "androidx.navigation:navigation-ui-ktx:$version"
-            // NOTE: keep in mind about incompatibility of safe-args v2.4.0-rc01 with AGP 7.1.0 (more: https://stackoverflow.com/a/70857477)
             const val navigationSafeArgsGradlePlugin = "androidx.navigation:navigation-safe-args-gradle-plugin:$version"
         }
 
         // https://maven.google.com/web/index.html#androidx.room
         // https://developer.android.com/jetpack/androidx/releases/room
         object Room {
-            private const val roomVersion = "2.4.1"
+            private const val roomVersion = "2.4.2"
             const val roomKtx = "androidx.room:room-ktx:$roomVersion"
             const val roomCompiler = "androidx.room:room-compiler:$roomVersion"
             const val roomTestImpl = "androidx.room:room-testing:$roomVersion"
@@ -365,8 +387,8 @@ object Libs {
 
     object Guava {
         // https://search.maven.org/search?q=g:com.google.guava
-        // https://github.com/google/guava/releases/tag/v31.0.1
-        const val version = "31.0.1"
+        // https://github.com/google/guava/releases
+        const val version = "31.1"
         const val guavaJre =     "com.google.guava:guava:$version-jre"
         const val guavaAndroid = "com.google.guava:guava:$version-android"
         const val guavaTestlibJre =     "com.google.guava:guava-testlib:$version-jre"
@@ -393,14 +415,14 @@ object Libs {
     }
 
     object Firebase {
-        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:20.0.1"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
-        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx:20.0.1" // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
+        const val firebaseAnalytics = "com.google.firebase:firebase-analytics:20.1.0"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
+        const val firebaseAnalyticsKtx = "com.google.firebase:firebase-analytics-ktx:20.1.0" // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
         const val firebaseAuth = "com.google.firebase:firebase-auth:21.0.1"                  // https://maven.google.com/web/index.html#com.google.firebase:firebase-auth
-        const val firebaseBom = "com.google.firebase:firebase-bom:29.0.0"                    // https://maven.google.com/web/index.html#com.google.firebase:firebase-bom
+        const val firebaseBom = "com.google.firebase:firebase-bom:29.1.0"                    // https://maven.google.com/web/index.html#com.google.firebase:firebase-bom
         const val firebaseConfig = "com.google.firebase:firebase-config:21.0.1"              // https://maven.google.com/web/index.html#com.google.firebase:firebase-config
         const val firebaseConfigKtx = "com.google.firebase:firebase-config-ktx:21.0.1"       // https://maven.google.com/web/index.html#com.google.firebase:firebase-config-ktx
-        const val firebaseCore = "com.google.firebase:firebase-core:20.0.0"                  // https://maven.google.com/web/index.html#com.google.firebase:firebase-core
-        const val firebaseFirestore = "com.google.firebase:firebase-firestore:24.0.0"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-firestore
+        const val firebaseCore = "com.google.firebase:firebase-core:20.1.0"                  // https://maven.google.com/web/index.html#com.google.firebase:firebase-core
+        const val firebaseFirestore = "com.google.firebase:firebase-firestore:24.0.1"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-firestore
         const val firebaseMessaging = "com.google.firebase:firebase-messaging:23.0.0"        // https://maven.google.com/web/index.html#com.google.firebase:firebase-messaging
         const val firebaseMessagingKtx = "com.google.firebase:firebase-messaging-ktx:23.0.0" // https://maven.google.com/web/index.html#com.google.firebase:firebase-messaging-ktx
 
