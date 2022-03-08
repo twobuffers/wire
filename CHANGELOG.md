@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Improve `createBearerAuthenticator()` (add `consent` param)
+
 ## [0.4.1] - 2021-03-08
 
 - Change `Lifecycle.onEvent` API (it returns LifecycleObserver now)

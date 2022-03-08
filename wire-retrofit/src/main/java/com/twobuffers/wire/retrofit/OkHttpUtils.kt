@@ -120,13 +120,18 @@ class UpdateHeadersInterceptor(private val headersUpdateFns: Map<String, (prev: 
     override fun intercept(chain: Interceptor.Chain): Response = chain.updateHeaders(headersUpdateFns)
 }
 
-private const val HEADER_AUTHORIZATION= "Authorization"
-private const val HEADER_AUTHORIZATION_VAL_TEMPLATE = "Bearer %s"
+const val HEADER_AUTHORIZATION= "Authorization"
+const val HEADER_AUTHORIZATION_VAL_TEMPLATE = "Bearer %s"
+val is401 = { res: Response -> res.code != HttpURLConnection.HTTP_UNAUTHORIZED }
+val authHeaderExists = { res: Response -> res.request.header(HEADER_AUTHORIZATION) != null }
 
-fun createBearerAuthenticator(refreshTokenFn: () -> String?) = object : Authenticator {
+fun createBearerAuthenticator(
+    refreshTokenFn: Function0<String?>,
+    consent: Function1<Response, Boolean> = { false },
+): Authenticator = object : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
-        if (response.code != HttpURLConnection.HTTP_UNAUTHORIZED) return null
-        if (response.request.header(HEADER_AUTHORIZATION) == null) return null
+        // TODO: Do I need `authHeaderExists` here?
+        if (!is401(response) || !authHeaderExists(response) || !consent(response)) return null
         synchronized(this) {
             val newToken = refreshTokenFn() ?: return null
             val oldRequest = response.request
