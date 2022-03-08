@@ -127,7 +127,7 @@ val authHeaderExists = { res: Response -> res.request.header(HEADER_AUTHORIZATIO
 
 fun createBearerAuthenticator(
     refreshTokenFn: Function0<String?>,
-    consent: Function1<Response, Boolean> = { false },
+    consent: Function1<Response, Boolean> = { true },
 ): Authenticator = object : Authenticator {
     override fun authenticate(route: Route?, response: Response): Request? {
         // TODO: Do I need `authHeaderExists` here?
