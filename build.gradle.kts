@@ -12,7 +12,7 @@ buildscript {
     }
     dependencies {
         classpath(buildcfg.GradlePlugins.androidGradlePlugin)
-        classpath(buildcfg.GradlePlugins.kotlinGradlePlugin)
+        classpath(buildcfg.Libs.Kotlin.kotlinGradlePlugin)
         classpath(buildcfg.GradlePlugins.gradleMavenPublishPlugin)
         classpath(buildcfg.GradlePlugins.gradleVersionsPlugin)
         classpath(buildcfg.GradlePlugins.googleServices)

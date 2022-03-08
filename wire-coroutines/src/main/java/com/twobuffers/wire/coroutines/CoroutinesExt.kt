@@ -9,30 +9,41 @@ import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
-fun CoroutineScope.launchPeriodically(
+suspend fun CoroutineScope.every(
     repeatMillis: Long,
     initialDelay: Long = 0L,
-    block: suspend () -> Unit
-) = launch {
+    block: suspend (Long) -> Unit,
+) {
     delay(initialDelay)
     while (isActive) {
-        block()
+        block(System.currentTimeMillis())
         delay(repeatMillis)
     }
 }
 
-@Suppress("NOTHING_TO_INLINE")
-inline fun CoroutineScope.every(repeatMillis: Long, initialDelay: Long = 0, noinline block: suspend () -> Unit): Job =
-    launchPeriodically(initialDelay = initialDelay, repeatMillis = repeatMillis, block = block)
+fun CoroutineScope.everyJob(
+    repeatMillis: Long,
+    initialDelay: Long = 0L,
+    block: suspend (Long) -> Unit,
+): Job = launch { every(repeatMillis = repeatMillis, initialDelay = initialDelay, block = block) }
 
-@Suppress("NOTHING_TO_INLINE")
-inline fun CoroutineScope.everyHour(initialDelay: Long = 0, noinline block: suspend () -> Unit): Job =
-    every(initialDelay, 60 * 60_000L, block)
-
-fun every(repeatMillis: Long, initialDelay: Long = 0): Flow<Long> = flow {
+fun everyFlow(repeatMillis: Long, initialDelay: Long = 0): Flow<Long> = flow {
     delay(initialDelay)
     while (currentCoroutineContext().isActive) {
         emit(System.currentTimeMillis())
         delay(repeatMillis)
     }
 }
+
+private const val second = 1000L
+private const val minute = 60 * second
+private const val hour = 60 * minute
+
+fun CoroutineScope.everyMinuteJob(initialDelay: Long = 0, block: suspend (Long) -> Unit): Job =
+    everyJob(repeatMillis = minute, initialDelay = initialDelay, block = block)
+
+fun CoroutineScope.everyHourJob(initialDelay: Long = 0, block: suspend (Long) -> Unit): Job =
+    everyJob(repeatMillis = hour, initialDelay = initialDelay, block = block)
+
+fun everyMinuteFlow(initialDelay: Long = 0): Flow<Long> = everyFlow(repeatMillis = minute, initialDelay = initialDelay)
+fun everyHourFlow(initialDelay: Long = 0): Flow<Long> = everyFlow(repeatMillis = hour, initialDelay = initialDelay)
