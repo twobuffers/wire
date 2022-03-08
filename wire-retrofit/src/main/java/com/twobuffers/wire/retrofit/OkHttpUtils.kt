@@ -122,7 +122,7 @@ class UpdateHeadersInterceptor(private val headersUpdateFns: Map<String, (prev: 
 
 const val HEADER_AUTHORIZATION= "Authorization"
 const val HEADER_AUTHORIZATION_VAL_TEMPLATE = "Bearer %s"
-val is401 = { res: Response -> res.code != HttpURLConnection.HTTP_UNAUTHORIZED }
+val is401 = { res: Response -> res.code == HttpURLConnection.HTTP_UNAUTHORIZED }
 val authHeaderExists = { res: Response -> res.request.header(HEADER_AUTHORIZATION) != null }
 
 fun createBearerAuthenticator(
