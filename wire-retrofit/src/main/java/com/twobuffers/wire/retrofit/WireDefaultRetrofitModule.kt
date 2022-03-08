@@ -58,7 +58,7 @@ object WireDefaultRetrofitDebugExtrasModule {
 
     private val DEFAULT_LOGGING_LEVEL = HttpLoggingInterceptor.Level.BODY
 
-    @Provides @IntoSet @OkHttpNetworkInterceptor
+    @Provides @IntoSet @OkHttpApplicationInterceptor
     fun provideHttpLoggingInterceptor(@HttpLoggingLevel logLevel: Optional<HttpLoggingInterceptor.Level>): Interceptor =
         HttpLoggingInterceptor().apply { level = logLevel.or(DEFAULT_LOGGING_LEVEL) }
 }
