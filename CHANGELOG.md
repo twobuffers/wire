@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.4.3] - 2021-03-08
+
+- Fix bug in OkHttp Authenticator (introduced in [0.4.2])
+- Change HttpLoggingInterceptor from Network- to ApplicationInterceptor
+
 ## [0.4.2] - 2021-03-08
 
 - Improve `createBearerAuthenticator()` (add `consent` param)
@@ -60,7 +65,8 @@
 - Add wire-utils
 
 
-[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.2...HEAD
+[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.3...HEAD
+[0.4.3]: https://github.com/twobuffers/wire/releases/tag/0.4.3
 [0.4.2]: https://github.com/twobuffers/wire/releases/tag/0.4.2
 [0.4.1]: https://github.com/twobuffers/wire/releases/tag/0.4.1
 [0.4.0]: https://github.com/twobuffers/wire/releases/tag/0.4.0
