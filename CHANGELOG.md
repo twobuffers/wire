@@ -2,6 +2,7 @@
 
 ## [Unreleased]
 
+- Fix bug in OkHttp Authenticator (concurrent use)
 - Add Tuple
 
 ## [0.4.3] - 2021-03-08

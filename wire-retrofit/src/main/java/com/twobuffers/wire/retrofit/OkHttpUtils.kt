@@ -1,5 +1,3 @@
-@file:Suppress("NOTHING_TO_INLINE")
-
 package com.twobuffers.wire.retrofit
 
 import java.net.HttpURLConnection
@@ -14,7 +12,7 @@ import okhttp3.Response
 import okhttp3.Route
 import okio.IOException
 
-fun <A> OkHttpClient.Builder.trySet(
+inline fun <A> OkHttpClient.Builder.trySet(
     a: A?,
     fn: OkHttpClient.Builder.(A) -> OkHttpClient.Builder,
 ) = apply {
@@ -22,7 +20,7 @@ fun <A> OkHttpClient.Builder.trySet(
     fn(newA)
 }
 
-fun <A, B> OkHttpClient.Builder.trySet(
+inline fun <A, B> OkHttpClient.Builder.trySet(
     pair: Pair<A, B>?,
     fn: OkHttpClient.Builder.(A, B) -> OkHttpClient.Builder,
 ) = apply {
@@ -30,11 +28,14 @@ fun <A, B> OkHttpClient.Builder.trySet(
     fn(a, b)
 }
 
+fun OkHttpClient.Builder.trySet(a: Authenticator?) = trySet(a, OkHttpClient.Builder::authenticator)
+
 fun OkHttpClient.Builder.addApplicationInterceptors(interceptors: List<Interceptor>) =
     apply { interceptors.forEach(::addInterceptor) }
 
 fun OkHttpClient.Builder.addNetworkInterceptors(interceptors: List<Interceptor>) =
     apply { interceptors.forEach(::addNetworkInterceptor) }
+
 
 fun makeOkHttpClient(
     okHttpClient: OkHttpClient? = null,
@@ -50,7 +51,7 @@ fun makeOkHttpClient(
     .trySet(cache, OkHttpClient.Builder::cache)
     .addApplicationInterceptors(applicationInterceptors)
     .addNetworkInterceptors(networkInterceptors)
-    .trySet(authenticator, OkHttpClient.Builder::authenticator)
+    .trySet(authenticator)
     .build()
 
 // https://square.github.io/okhttp/3.x/okhttp/okhttp3/OkHttpClient.html
@@ -117,23 +118,44 @@ class UpdateHeadersInterceptor(private val headersUpdateFns: Map<String, (prev: 
 
 const val HEADER_AUTHORIZATION= "Authorization"
 const val HEADER_AUTHORIZATION_VAL_TEMPLATE = "Bearer %s"
+
+val String.token get() = substring(7, length)
+fun makeBearer(token: String) = HEADER_AUTHORIZATION_VAL_TEMPLATE.format(token)
+
 val is401 = { res: Response -> res.code == HttpURLConnection.HTTP_UNAUTHORIZED }
 val authHeaderExists = { res: Response -> res.request.header(HEADER_AUTHORIZATION) != null }
 
-fun createBearerAuthenticator(
-    refreshTokenFn: Function0<String?>,
-    consent: Function1<Response, Boolean> = { true },
-): Authenticator = object : Authenticator {
+// currentTokenFn - returns current token
+// refreshTokenFn - returns the refreshed token (calls backend for new token, save it to session, and return it here)
+// consentPred - based on response checks whether to refresh the token and resend the request,
+//               e.g. whether it's specific 401 type in case if we don't want to call refresh for all 401s.
+class RefreshTokenAuthenticator(
+    private val currentTokenFn: () -> String?,
+    private val refreshTokenFn: () -> String?,
+    private val consentPred: (Response) -> Boolean = { true },
+) : Authenticator {
+    @Suppress("FoldInitializerAndIfToElvis")
     override fun authenticate(route: Route?, response: Response): Request? {
-        // TODO: Do I need `authHeaderExists` here?
-        if (!is401(response) || !authHeaderExists(response) || !consent(response)) return null
-        synchronized(this) {
-            val newToken = refreshTokenFn() ?: return null
+        if (!is401(response)) return null             // if response is not 401, ignore
+        if (!authHeaderExists(response)) return null  // if the original request did not have the header, ignore
+        if (!consentPred(response)) return null         // if the custom predicate returns false, ignore
+        synchronized(Authenticator::class) {
             val oldRequest = response.request
-            val oldToken = oldRequest.header(HEADER_AUTHORIZATION)
-            if (newToken == oldToken) return null // if both tokens are the same, there is nothing to change
+            val oldToken = oldRequest.header(HEADER_AUTHORIZATION)?.token
+            val currentToken = currentTokenFn()
+            // Set new token to token currently at the session, OR if the same, get a refreshed one
+            // (we compare the old token against the one from the session, because with the synchronized block
+            // we queue all the failed requests, and if the first refresh the token, the succeeding can just use
+            // the updated token from the session instead of requesting the new token again)
+            val newToken = if (oldToken != currentToken) currentToken else refreshTokenFn()
+            // If the currentToken is null, it means we cleared the session and don't want to perform refresh.
+            // If the refreshTokenFn() returns null, then nothing to do.
+            if (newToken == null) return null
+            // If refreshed token is the same as the original one, no point of sending the request again
+            if (newToken == oldToken) return null
+            // Otherwise, resend the request with ne token
             return oldRequest.newBuilder()
-                .header(HEADER_AUTHORIZATION, HEADER_AUTHORIZATION_VAL_TEMPLATE.format(newToken))
+                .header(HEADER_AUTHORIZATION, makeBearer(newToken))
                 .build()
         }
     }

@@ -368,6 +368,7 @@ object Libs {
         private const val version = "4.9.3"
         const val okhttp = "com.squareup.okhttp3:okhttp:$version"
         const val loggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$version"
+        const val mockwebserver = "com.squareup.okhttp3:mockwebserver:$version"
     }
 
     object Moshi {
