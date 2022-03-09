@@ -69,19 +69,14 @@ fun Interceptor.Chain.addHeaders(headers: Map<String, String>): Response {
 }
 
 fun Interceptor.Chain.addHeadersWithValueLambdas(headers: Map<String, () -> String?>): Response {
-    val request = request()
-        .newBuilder()
-        .apply { headers.forEach { (h, getV) -> getV()?.also { v -> addHeader(h, v) } } }
-        .build()
-    return proceed(request)
+    @Suppress("UNCHECKED_CAST")
+    val hv = headers.mapValues { it.value() }.filterValues { it != null } as Map<String, String>
+    return addHeaders(hv)
 }
 
 fun Interceptor.Chain.addHeadersWithLambdas(headers: List<() -> Pair<String, String>?>): Response {
-    val request = request()
-        .newBuilder()
-        .apply { headers.forEach { getPair -> getPair()?.also { (h, v) -> addHeader(h, v) } } }
-        .build()
-    return proceed(request)
+    val hv = headers.mapNotNull { it() }.toMap()
+    return addHeaders(hv)
 }
 
 class AddHeadersInterceptor(private val headers: Map<String, String>) : Interceptor {
