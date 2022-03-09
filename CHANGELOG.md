@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.4.4] - 2021-03-09
+
 - Fix bug in OkHttp Authenticator (concurrent use)
 - Add Tuple
 
@@ -68,7 +70,8 @@
 - Add wire-utils
 
 
-[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.3...HEAD
+[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.4...HEAD
+[0.4.4]: https://github.com/twobuffers/wire/releases/tag/0.4.4
 [0.4.3]: https://github.com/twobuffers/wire/releases/tag/0.4.3
 [0.4.2]: https://github.com/twobuffers/wire/releases/tag/0.4.2
 [0.4.1]: https://github.com/twobuffers/wire/releases/tag/0.4.1
