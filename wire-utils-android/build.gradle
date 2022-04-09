@@ -31,7 +31,7 @@ dependencies {
     api Libs.Coroutines.coroutinesCore               // exported: Job
 
     api Libs.AndroidX.appcompat                      // exported: AppCompatActivity
-    api Libs.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
+    compileOnly Libs.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
     implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx
     api Libs.AndroidX.recyclerview
     compileOnly Libs.AndroidX.viewpager2             // clearAdapterOnViewDestroy
