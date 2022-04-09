@@ -7,6 +7,7 @@ import okhttp3.Cache
 import okhttp3.Headers
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import okhttp3.Request
 import okhttp3.Response
 import okhttp3.Route
@@ -29,6 +30,7 @@ inline fun <A, B> OkHttpClient.Builder.trySet(
 }
 
 fun OkHttpClient.Builder.trySet(a: Authenticator?) = trySet(a, OkHttpClient.Builder::authenticator)
+fun OkHttpClient.Builder.trySet(l: List<Protocol>?) = trySet(l, OkHttpClient.Builder::protocols)
 
 fun OkHttpClient.Builder.addApplicationInterceptors(interceptors: List<Interceptor>) =
     apply { interceptors.forEach(::addInterceptor) }
