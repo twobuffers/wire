@@ -83,16 +83,22 @@ fun Interceptor.Chain.addHeadersWithLambdas(headers: List<() -> Pair<String, Str
 }
 
 class AddHeadersInterceptor(private val headers: Map<String, String>) : Interceptor {
+    constructor(vararg headers: Pair<String, String>) : this(mapOf(*headers))
+
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response = chain.addHeaders(headers)
 }
 
 class AddHeadersWithValueLambdasInterceptor(private val headers: Map<String, () -> String?>) : Interceptor {
+    constructor(vararg headers: Pair<String, () -> String?>) : this(mapOf(*headers))
+
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response = chain.addHeadersWithValueLambdas(headers)
 }
 
 class AddHeadersWithLambdasInterceptor(private val headers: List<() -> Pair<String, String>?>) : Interceptor {
+    constructor(vararg headers: () -> Pair<String, String>?) : this(listOf(*headers))
+
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain): Response = chain.addHeadersWithLambdas(headers)
 }
