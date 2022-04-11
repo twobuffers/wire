@@ -7,6 +7,7 @@ plugins {
 }
 
 dependencies {
+    implementation(project(":wire-utils"))
     api(Libs.Kotlin.kotlinStdlib)
     api(Libs.Dagger.dagger)
     kapt(Libs.Dagger.daggerCompiler)
