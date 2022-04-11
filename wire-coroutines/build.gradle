@@ -18,4 +18,8 @@ dependencies {
     implementation Libs.Coroutines.coroutinesCore
     api Libs.Dagger.dagger
     kapt Libs.Dagger.daggerCompiler
+
+    testImplementation Libs.junit4
+    testImplementation Libs.Coroutines.coroutinesTest
+    testImplementation Libs.Google.truth
 }
