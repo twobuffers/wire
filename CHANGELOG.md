@@ -2,6 +2,11 @@
 
 ## [Unreleased]
 
+## [0.4.5] - 2021-04-11
+
+- Fix issue with DataBinding when upgrade in the client
+- Add new utils
+
 ## [0.4.4] - 2021-03-09
 
 - Fix bug in OkHttp Authenticator (concurrent use)
@@ -70,7 +75,8 @@
 - Add wire-utils
 
 
-[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.4...HEAD
+[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.5...HEAD
+[0.4.5]: https://github.com/twobuffers/wire/releases/tag/0.4.5
 [0.4.4]: https://github.com/twobuffers/wire/releases/tag/0.4.4
 [0.4.3]: https://github.com/twobuffers/wire/releases/tag/0.4.3
 [0.4.2]: https://github.com/twobuffers/wire/releases/tag/0.4.2
