@@ -1,7 +1,11 @@
 package com.twobuffers.wire.coroutines
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 private object UNDEFINED
 
@@ -26,4 +30,10 @@ fun <T> Flow<T>.pairwiseStrict(): Flow<Pair<T, T>> = flow {
         emit(v)
         prev = value
     }
+}
+
+fun <T> Flow<T>.toList(scope: CoroutineScope): Pair<List<T>, Job> {
+    val dest = mutableListOf<T>()
+    val job = onEach { dest.add(it) }.launchIn(scope)
+    return Pair(dest, job)
 }
