@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.4.6] - 2021-04-12
+
+- Add Flow.toList for testing
+
 ## [0.4.5] - 2021-04-11
 
 - Fix issue with DataBinding when upgrade in the client
@@ -75,7 +79,8 @@
 - Add wire-utils
 
 
-[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.5...HEAD
+[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.6...HEAD
+[0.4.6]: https://github.com/twobuffers/wire/releases/tag/0.4.5
 [0.4.5]: https://github.com/twobuffers/wire/releases/tag/0.4.5
 [0.4.4]: https://github.com/twobuffers/wire/releases/tag/0.4.4
 [0.4.3]: https://github.com/twobuffers/wire/releases/tag/0.4.3
