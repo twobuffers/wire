@@ -3,6 +3,7 @@ package com.twobuffers.wire.coroutines
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -37,3 +38,5 @@ fun <T> Flow<T>.toList(scope: CoroutineScope): Pair<List<T>, Job> {
     val job = onEach { dest.add(it) }.launchIn(scope)
     return Pair(dest, job)
 }
+
+fun <T> Flow<T>.filter(value: T) = filter { it == value }
