@@ -26,8 +26,10 @@ android {
 }
 
 dependencies {
+    api(project(":wire-di-annotations-common"))
     api(project(":wire-initializer"))
     api(Libs.Kotlin.kotlinStdlib)
+    api(Libs.Coroutines.coroutinesCore)
     api(Libs.Dagger.dagger)
     kapt(Libs.Dagger.daggerCompiler)
     api(Libs.threeTenABP)
