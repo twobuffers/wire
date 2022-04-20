@@ -2,6 +2,12 @@
 
 ## [Unreleased]
 
+## [0.4.7] - 2021-04-20
+
+- Add shared prefs utils
+- Add StateFlow at ThreeTenABPInitializer.initialized
+- Add Flow.filter for readability
+
 ## [0.4.6] - 2021-04-12
 
 - Add Flow.toList for testing
@@ -79,8 +85,9 @@
 - Add wire-utils
 
 
-[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.6...HEAD
-[0.4.6]: https://github.com/twobuffers/wire/releases/tag/0.4.5
+[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.7...HEAD
+[0.4.7]: https://github.com/twobuffers/wire/releases/tag/0.4.7
+[0.4.6]: https://github.com/twobuffers/wire/releases/tag/0.4.6
 [0.4.5]: https://github.com/twobuffers/wire/releases/tag/0.4.5
 [0.4.4]: https://github.com/twobuffers/wire/releases/tag/0.4.4
 [0.4.3]: https://github.com/twobuffers/wire/releases/tag/0.4.3
