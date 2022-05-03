@@ -21,9 +21,8 @@ class Initializers @Inject constructor(
     private val initializers: Set<@JvmSuppressWildcards Initializer>
 ) {
     fun init() {
-        initializers
-            .sortedBy { it.priority }
-            .forEach { it.init() }
+        val sorted = initializers.sortedBy { it.priority }
+        sorted.forEach { it.init() }
     }
 }
 
