@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.4.8] - 2021-05-03
+
+- Add extensions to convert Map<> to Bundle
+
 ## [0.4.7] - 2021-04-20
 
 - Add shared prefs utils
@@ -85,7 +89,8 @@
 - Add wire-utils
 
 
-[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.7...HEAD
+[Unreleased]: https://github.com/twobuffers/wire/compare/0.4.8...HEAD
+[0.4.8]: https://github.com/twobuffers/wire/releases/tag/0.4.8
 [0.4.7]: https://github.com/twobuffers/wire/releases/tag/0.4.7
 [0.4.6]: https://github.com/twobuffers/wire/releases/tag/0.4.6
 [0.4.5]: https://github.com/twobuffers/wire/releases/tag/0.4.5
