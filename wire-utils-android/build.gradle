@@ -26,6 +26,8 @@ android {
 }
 
 dependencies {
+    implementation(project(":wire-coroutines"))
+
     implementation Libs.Kotlin.kotlinStdlib
 
     api Libs.Coroutines.coroutinesCore               // exported: Job
