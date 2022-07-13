@@ -13,6 +13,7 @@ android {
     defaultConfig {
         minSdkVersion buildConfig.minSdk
         targetSdkVersion buildConfig.targetSdk
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
@@ -38,5 +39,10 @@ dependencies {
     api Libs.AndroidX.recyclerview
     compileOnly Libs.AndroidX.viewpager2             // clearAdapterOnViewDestroy
 
+    implementation(Libs.OkHttp.okhttp)
     implementation(Libs.AndroidX.Security.securityCrypto)
+
+    testImplementation Libs.AndroidX.Test.Ext.junit
+    androidTestImplementation Libs.AndroidX.Test.Ext.junit
+    androidTestImplementation Libs.AndroidX.Test.runner
 }

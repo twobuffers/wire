@@ -3,7 +3,7 @@ rootProject.name = "Wire"
 include ':wire-di-annotations-common'
 include ':wire-di-annotations'
 include ':wire-epoxy'
-include ':wire-utils-android'
+include ':wire-utils-android', ':sample-internet-monitor'
 include ':wire-utils'
 include ':wire-coroutines'
 include ':wire-coroutines-android'
