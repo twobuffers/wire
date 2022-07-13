@@ -157,13 +157,6 @@ tags
 # e.g.
 # !.idea/codeStyles/Project.xml
 
-logs/
-
-# Files with details needed to sign APK
-#release/
-release/app-prod.p12
-release/app-prod.properties
-
 # AsciiDoc outcomes
 *.html
 
