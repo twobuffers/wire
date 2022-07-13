@@ -20,6 +20,7 @@ object GradlePlugins {
     const val gradleMavenPublishPlugin = "com.vanniktech:gradle-maven-publish-plugin:0.19.0"
     // https://github.com/ben-manes/gradle-versions-plugin/releases
     const val gradleVersionsPlugin = "com.github.ben-manes:gradle-versions-plugin:0.42.0"
+    const val gradleVersionsPluginName = "com.github.ben-manes.versions"
     // https://maven.google.com/web/index.html#com.google.gms:google-services
     const val googleServices = "com.google.gms:google-services:4.3.10"
 }
@@ -50,14 +51,14 @@ object Libs {
         const val truth = "com.google.truth:truth:1.0.1"
     }
 
-    // https://kotlinlang.org/docs/releases.html#release-details
-    // https://github.com/JetBrains/kotlin/releases
     object Kotlin {
-        const val version = "1.6.10"
+        // https://kotlinlang.org/docs/releases.html#release-details
+        // https://github.com/JetBrains/kotlin/releases
+        const val version = "1.6.10" // latest: 1.6.21, but better to wait to compose get support for 1.6.21
         const val group = "org.jetbrains.kotlin"
         const val artifactKotlinStdlib = "kotlin-stdlib"
-        const val artifactKotlinStdlib7 = "kotlin-stdlib7"
-        const val artifactKotlinStdlib8 = "kotlin-stdlib8"
+        const val artifactKotlinStdlib7 = "kotlin-stdlib-jdk7"
+        const val artifactKotlinStdlib8 = "kotlin-stdlib-jdk8"
         const val kotlinStdlib = "$group:$artifactKotlinStdlib:$version"
         const val kotlinStdlib7 = "$group:$artifactKotlinStdlib7:$version"
         const val kotlinStdlib8 = "$group:$artifactKotlinStdlib8:$version"
@@ -68,6 +69,7 @@ object Libs {
 
     // https://mvnrepository.com/artifact/org.jetbrains.kotlinx/
     // https://search.maven.org/search?q=g:org.jetbrains.kotlinx%20AND%20a:kotlinx-coroutines*
+    // CHANGELOG: https://github.com/Kotlin/kotlinx.coroutines/blob/master/CHANGES.md
     object Coroutines {
         private const val version = "1.6.0"
         const val coroutinesCore = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
@@ -81,7 +83,7 @@ object Libs {
     object Dagger {
         // https://github.com/google/dagger/releases
         // https://repo1.maven.org/maven2/com/google/dagger/
-        private const val version = "2.41"
+        private const val version = "2.42"
         // WARNING:
         // There is an issue introduced in 2.40.4, that caused build failure.
         // The issue happen  to Jetpack Compose and Dagger.
@@ -102,17 +104,28 @@ object Libs {
 
     object AssistedInject {
         private const val version = "0.8.1"
-        const val assistedInjectAnnotationDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
-        const val assistedInjectProcessorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:$version"
         const val assistedInjectAnnotations = "com.squareup.inject:assisted-inject-annotations:$version"
+        const val assistedInjectAnnotationsDagger2 = "com.squareup.inject:assisted-inject-annotations-dagger2:$version"
         const val assistedInjectProcessor = "com.squareup.inject:assisted-inject-processor:$version"
+        const val assistedInjectProcessorDagger2 = "com.squareup.inject:assisted-inject-processor-dagger2:$version"
         const val inflationInject = "com.squareup.inject:inflation-inject:$version"
         const val inflationInjectProcessor = "com.squareup.inject:inflation-inject-processor:$version"
     }
 
     object JavaxAnnotation {
-        const val jsr250Api = "javax.annotation:jsr250-api:1.0"
+        const val jsr250Api = "javax.annotation:jsr250-api:1.0" // for Dagger
         const val javaxAnnotationApi = "javax.annotation:javax.annotation-api:1.3.2"
+    }
+
+    // https://github.com/fabioCollini/DaggerMock
+    // http://www.albertgao.xyz/2018/04/24/how-to-mock-dagger-android-injection-in-instrumented-tests-with-kotlin/
+    // https://medium.com/@fabioCollini/android-testing-using-dagger-2-mockito-and-a-custom-junit-rule-c8487ed01b56
+    const val daggerMock = "com.github.fabioCollini.daggermock:daggermock:0.8.5"
+
+    object ButterKnife {
+        private const val version = "10.2.1"
+        const val butterknife = "com.jakewharton:butterknife:$version"
+        const val butterknifeCompiler = "com.jakewharton:butterknife-compiler:$version"
     }
 
     // Sources: https://android.googlesource.com/platform/frameworks/support/+/HEAD/
@@ -441,4 +454,35 @@ object Libs {
     const val mockk = "io.mockk:mockk:1.12.0"
     const val hamcrest = "org.hamcrest:hamcrest-integration:1.3"
     const val assertJ = "org.assertj:assertj-core:3.21.0"
+
+    object Wire {
+        // https://search.maven.org/search?q=g:com.twobuffers.wire
+        // https://s01.oss.sonatype.org/content/groups/public/com/twobuffers/wire/ (RELEASES)
+        // https://s01.oss.sonatype.org/content/groups/staging/com/twobuffers/wire/ (SNAPSHOTS)
+        private const val version = "0.4.8"
+        const val wireCoroutines = "com.twobuffers.wire:wire-coroutines:$version"
+        const val wireCoroutinesAndroid = "com.twobuffers.wire:wire-coroutines-android:$version"
+        const val wireDiAnnotationsCommon = "com.twobuffers.wire:wire-di-annotations-common:$version"
+        const val wireDiAnnotations = "com.twobuffers.wire:wire-di-annotations:$version"
+        const val wireInitializer = "com.twobuffers.wire:wire-initializer:$version"
+        const val wireFirebaseConfig = "com.twobuffers.wire:wire-firebase-config:$version"
+        const val wireUtils = "com.twobuffers.wire:wire-utils:$version"
+        const val wireUtilsAndroid = "com.twobuffers.wire:wire-utils-android:$version"
+        const val wireThreeTenABP = "com.twobuffers.wire:wire-threetenabp:$version"
+        const val wireMoshi = "com.twobuffers.wire:wire-moshi:$version"
+        const val wireRetrofit = "com.twobuffers.wire:wire-retrofit:$version"
+        const val wireRetrofitAndroid = "com.twobuffers.wire:wire-retrofit-android:$version"
+        const val wireRxjava = "com.twobuffers.wire:wire-rxjava:$version"
+        const val wireRxjavaAndroid = "com.twobuffers.wire:wire-rxjava-android:$version"
+    }
+
+    object Suricate {
+        // https://search.maven.org/search?q=g:com.twobuffers.suricate
+        // https://s01.oss.sonatype.org/content/groups/public/com/twobuffers/suricate/ (RELEASES)
+        // https://s01.oss.sonatype.org/content/groups/staging/com/twobuffers/suricate/ (SNAPSHOTS)
+        private const val version = "0.0.1-SNAPSHOT"
+        const val suricate = "com.twobuffers.suricate:suricate:$version"
+        // alternatively:
+        // https://jitpack.io/#twobuffers/suricate
+    }
 }

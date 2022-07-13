@@ -46,7 +46,7 @@ subprojects {
     }
 }
 
-apply(plugin = "com.github.ben-manes.versions")
+apply(plugin = buildcfg.GradlePlugins.gradleVersionsPluginName)
 tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
     checkForGradleUpdate = false
     outputFormatter = "plain,html"
