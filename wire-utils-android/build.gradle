@@ -26,6 +26,9 @@ android {
 }
 
 dependencies {
+    implementation(project(":wire-coroutines"))
+    implementation(project(":wire-utils"))
+
     implementation Libs.Kotlin.kotlinStdlib
 
     api Libs.Coroutines.coroutinesCore               // exported: Job
@@ -33,8 +36,11 @@ dependencies {
     api Libs.AndroidX.appcompat                      // exported: AppCompatActivity
     compileOnly Libs.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
     implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx
+    implementation Libs.AndroidX.Lifecycle.lifecycleService
     api Libs.AndroidX.recyclerview
     compileOnly Libs.AndroidX.viewpager2             // clearAdapterOnViewDestroy
 
     implementation(Libs.AndroidX.Security.securityCrypto)
+
+    implementation(Libs.timber)
 }
