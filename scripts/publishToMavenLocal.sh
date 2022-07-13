@@ -2,8 +2,8 @@
 
 #
 # Example:
-#   ./script/publishToMavenLocal
-#   ./script/publishToMavenLocal :wire-utils-android:publishMavenPublicationToMavenLocal
+#   ./scripts/publishToMavenLocal
+#   ./scripts/publishToMavenLocal :wire-utils-android:publishMavenPublicationToMavenLocal
 #
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]:-${0}}")" || exit; pwd -P)"
@@ -26,4 +26,4 @@ trap "rm -f \"${GPG_SECRING_PATH}\"" EXIT
 GRADLE_TASK=${1:-"publishToMavenLocal"}
 
 # publish specific library
-./gradlew --console=verbose -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" ${GRADLE_TASK}
+./gradlew --console=verbose -P"signing.secretKeyRingFile=${GPG_SECRING_PATH}" -P"signing.password=${GPG_PASSPHRASE}" -P"signing.keyId=${GPG_KEY_ID}" "${GRADLE_TASK}"
