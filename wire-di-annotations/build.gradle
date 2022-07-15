@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -27,7 +27,7 @@ android {
 
 dependencies {
     api project(':wire-di-annotations-common')
-    implementation Libs.Kotlin.kotlinStdlib
-    api Libs.Dagger.dagger
-    api Libs.AndroidX.Lifecycle.lifecycleViewmodelKtx
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    api(Deps.ComGoogle.Dagger.dagger)
+    api Deps.AndroidX.Lifecycle.lifecycleViewmodelKtx
 }

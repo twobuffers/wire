@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 
 plugins {
     id(GradlePluginId.KOTLIN_JVM)
@@ -13,14 +13,14 @@ java {
 
 dependencies {
     api(project(":wire-di-annotations-common"))
-    api(Libs.Kotlin.kotlinStdlib)
-    api(Libs.Dagger.dagger)
-    kapt(Libs.Dagger.daggerCompiler)
-    api(Libs.Retrofit.retrofit) { exclude(group = Libs.Kotlin.group, module = Libs.Kotlin.artifactKotlinStdlib7) }
-    api(Libs.Retrofit.converterMoshi)
+    api(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    api(Deps.ComGoogle.Dagger.dagger)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
+    api(Deps.ComSquereup.Retrofit.retrofit) { exclude(group = Deps.OrgJetBrains.Kotlin.group, module = Deps.OrgJetBrains.Kotlin.artifactKotlinStdlib7) }
+    api(Deps.ComSquereup.Retrofit.converterMoshi)
 
-    api(Libs.OkHttp.okhttp)
-    api(Libs.OkHttp.loggingInterceptor)
+    api(Deps.ComSquereup.OkHttp3.okhttp)
+    api(Deps.ComSquereup.OkHttp3.loggingInterceptor)
 
-    api(Libs.Guava.guavaAndroid)
+    api(Deps.ComGoogle.Guava.guavaAndroid)
 }

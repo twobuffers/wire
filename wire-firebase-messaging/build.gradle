@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -38,14 +38,14 @@ dependencies {
     implementation project(':wire-utils')
     api project(':wire-initializer')
 
-    implementation Libs.Kotlin.kotlinStdlib
-    implementation Libs.Coroutines.coroutinesCore
-    implementation Libs.Coroutines.coroutinesPlayServices
-    api Libs.AndroidX.Annotation.annotation
-    api Libs.Dagger.dagger
-    api Libs.Dagger.daggerAndroid
-    kapt Libs.Dagger.daggerCompiler
-    kapt Libs.Dagger.daggerAndroidProcessor
-    api Libs.Firebase.firebaseAnalyticsKtx // export: to enable analytics for push notifications
-    api Libs.Firebase.firebaseMessagingKtx // export: FirebaseMessaging, RemoteMessage
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesPlayServices)
+    api(Deps.AndroidX.Annotation.annotation)
+    api(Deps.ComGoogle.Dagger.dagger)
+    api(Deps.ComGoogle.Dagger.daggerAndroid)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
+    kapt(Deps.ComGoogle.Dagger.daggerAndroidProcessor)
+    api(Deps.ComGoogle.Firebase.firebaseAnalyticsKtx) // export: to enable analytics for push notifications
+    api Deps.ComGoogle.Firebase.firebaseMessagingKtx // export: FirebaseMessaging, RemoteMessage
 }

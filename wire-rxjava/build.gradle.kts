@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 
 plugins {
     id(GradlePluginId.KOTLIN_JVM)
@@ -11,6 +11,6 @@ java {
 }
 
 dependencies {
-    api(Libs.Kotlin.kotlinStdlib)
-    api(Libs.RxJava.rxjava)
+    api(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    api(Deps.IoReactivex.rxJava)
 }

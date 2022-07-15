@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -13,6 +13,6 @@ java {
 }
 
 dependencies {
-    implementation Libs.Kotlin.kotlinStdlib
-    api Libs.Dagger.dagger
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    api(Deps.ComGoogle.Dagger.dagger)
 }

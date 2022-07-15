@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 
 plugins {
     id(GradlePluginId.ANDROID_LIBRARY)
@@ -28,9 +28,9 @@ android {
 dependencies {
     api(project(":wire-di-annotations-common"))
     api(project(":wire-initializer"))
-    api(Libs.Kotlin.kotlinStdlib)
-    api(Libs.Coroutines.coroutinesCore)
-    api(Libs.Dagger.dagger)
-    kapt(Libs.Dagger.daggerCompiler)
-    api(Libs.threeTenABP)
+    api(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    api(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)
+    api(Deps.ComGoogle.Dagger.dagger)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
+    api(Deps.ComJakeWharton.threeTenABP)
 }

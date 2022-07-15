@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -26,8 +26,8 @@ android {
 }
 
 dependencies {
-    implementation Libs.Kotlin.kotlinStdlib
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
 
-    api Libs.AirBnb.epoxy
-    api Libs.AirBnb.epoxyDatabinding
+    api(Deps.ComAirbnbAndroid.EpoxyBeta.epoxy)
+    api(Deps.ComAirbnbAndroid.EpoxyBeta.epoxyDataBinding)
 }

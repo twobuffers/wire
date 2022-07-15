@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -38,14 +38,14 @@ dependencies {
     implementation project(':wire-utils')
     api project(':wire-initializer')
 
-    implementation Libs.Kotlin.kotlinStdlib
-    implementation Libs.Coroutines.coroutinesCore
-    implementation Libs.Coroutines.coroutinesPlayServices
-    api Libs.AndroidX.Annotation.annotation
-    api Libs.Dagger.dagger
-    kapt Libs.Dagger.daggerCompiler
-    api Libs.Firebase.firebaseConfigKtx
-    api Libs.Firebase.firebaseAnalyticsKtx // Firebase recommends to enable Analytics when using Remote Config
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesPlayServices)
+    api(Deps.AndroidX.Annotation.annotation)
+    api(Deps.ComGoogle.Dagger.dagger)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
+    api(Deps.ComGoogle.Firebase.firebaseAnalyticsKtx) // Firebase recommends to enable Analytics when using Remote Config
+    api(Deps.ComGoogle.Firebase.firebaseConfigKtx)
 
-    api Libs.Guava.guavaAndroid
+    api(Deps.ComGoogle.Guava.guavaAndroid)
 }

@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -28,11 +28,11 @@ android {
 
 dependencies {
     api project(':wire-coroutines')
-    implementation Libs.Kotlin.kotlinStdlib
-    implementation Libs.Coroutines.coroutinesCore
-    implementation Libs.Coroutines.coroutinesAndroid
-    implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx // androidx.lifecycle.coroutineScope
-    implementation Libs.AndroidX.Lifecycle.lifecycleProcess    // androidx.lifecycle.ProcessLifecycleOwner
-    api Libs.Dagger.dagger
-    kapt Libs.Dagger.daggerCompiler
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)
+    implementation Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesAndroid
+    implementation(Deps.AndroidX.Lifecycle.lifecycleRuntimeKtx) // androidx.lifecycle.coroutineScope
+    implementation(Deps.AndroidX.Lifecycle.lifecycleProcess)    // androidx.lifecycle.ProcessLifecycleOwner
+    api(Deps.ComGoogle.Dagger.dagger)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
 }
