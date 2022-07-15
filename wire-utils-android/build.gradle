@@ -39,6 +39,7 @@ dependencies {
     implementation Libs.AndroidX.Lifecycle.lifecycleService
     api Libs.AndroidX.recyclerview
     compileOnly Libs.AndroidX.viewpager2             // clearAdapterOnViewDestroy
+    api(Libs.AndroidX.Navigation.navigationFragment)
 
     implementation(Libs.AndroidX.Security.securityCrypto)
 
