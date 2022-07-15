@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -14,12 +14,12 @@ java {
 }
 
 dependencies {
-    implementation Libs.Kotlin.kotlinStdlib
-    implementation Libs.Coroutines.coroutinesCore
-    api Libs.Dagger.dagger
-    kapt Libs.Dagger.daggerCompiler
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)
+    api(Deps.ComGoogle.Dagger.dagger)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
 
-    testImplementation Libs.junit4
-    testImplementation Libs.Coroutines.coroutinesTest
-    testImplementation Libs.Google.truth
+    testImplementation(Deps.JUnit.junit4)
+    testImplementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesTest)
+    testImplementation(Deps.ComGoogle.truth)
 }

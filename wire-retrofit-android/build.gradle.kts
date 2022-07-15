@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 
 plugins {
     id(GradlePluginId.ANDROID_LIBRARY)
@@ -27,6 +27,6 @@ android {
 
 dependencies {
     api(project(":wire-retrofit"))
-    api(Libs.Dagger.dagger)
-    kapt(Libs.Dagger.daggerCompiler)
+    api(Deps.ComGoogle.Dagger.dagger)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
 }

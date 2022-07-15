@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -13,12 +13,12 @@ java {
 }
 
 dependencies {
-    implementation Libs.Kotlin.kotlinStdlib
-    implementation Libs.Coroutines.coroutinesCore
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)
 
-    api Libs.AndroidX.Annotation.annotation
-    api Libs.Dagger.dagger
+    api(Deps.AndroidX.Annotation.annotation)
+    api(Deps.ComGoogle.Dagger.dagger)
 
-    testImplementation Libs.junit4
-    testImplementation Libs.Coroutines.coroutinesTest
+    testImplementation(Deps.JUnit.junit4)
+    testImplementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesTest)
 }

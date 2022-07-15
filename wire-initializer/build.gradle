@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -13,7 +13,7 @@ java {
 }
 
 dependencies {
-    implementation Libs.Kotlin.kotlinStdlib
-    api Libs.AndroidX.Annotation.annotation
-    api Libs.Dagger.dagger
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    api(Deps.AndroidX.Annotation.annotation)
+    api(Deps.ComGoogle.Dagger.dagger)
 }

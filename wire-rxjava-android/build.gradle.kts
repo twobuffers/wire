@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 
 plugins {
     id(GradlePluginId.ANDROID_LIBRARY)
@@ -28,5 +28,5 @@ android {
 dependencies {
     api(project(":wire-rxjava"))
     api(project(":wire-utils-android"))
-    api(Libs.RxJava.rxjava)
+    api(Deps.IoReactivex.rxJava)
 }

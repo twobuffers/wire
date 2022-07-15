@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -50,19 +50,19 @@ dependencies {
     implementation project(':wire-initializer')    // Initializers
     implementation project(':wire-firebase-messaging')
 
-    implementation Libs.Coroutines.coroutinesCore
+    implementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)
 
-    implementation Libs.Dagger.dagger
-    implementation Libs.Dagger.daggerAndroid
-    implementation Libs.Dagger.daggerAndroidSupport
-    kapt Libs.Dagger.daggerCompiler
-    kapt Libs.Dagger.daggerAndroidProcessor
+    implementation(Deps.ComGoogle.Dagger.dagger)
+    implementation(Deps.ComGoogle.Dagger.daggerAndroid)
+    implementation(Deps.ComGoogle.Dagger.daggerAndroidSupport)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
+    kapt(Deps.ComGoogle.Dagger.daggerAndroidProcessor)
 
-    implementation Libs.AndroidX.appcompat
-    implementation Libs.AndroidX.constraintlayout
-    implementation Libs.AndroidX.recyclerview
-    implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx // androidx.lifecycle.lifecycleScope
+    implementation(Deps.AndroidX.appcompat)
+    implementation(Deps.AndroidX.constraintlayout)
+    implementation(Deps.AndroidX.recyclerview)
+    implementation(Deps.AndroidX.Lifecycle.lifecycleRuntimeKtx) // androidx.lifecycle.lifecycleScope
 
     implementation project(':wire-epoxy')
-    kapt Libs.AirBnb.epoxyProcessor
+    kapt(Deps.ComAirbnbAndroid.EpoxyBeta.epoxyProcessor)
 }

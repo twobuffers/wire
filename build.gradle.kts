@@ -11,11 +11,11 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath(buildcfg.GradlePlugins.androidGradlePlugin)
-        classpath(buildcfg.Libs.Kotlin.kotlinGradlePlugin)
-        classpath(buildcfg.GradlePlugins.gradleMavenPublishPlugin)
-        classpath(buildcfg.GradlePlugins.gradleVersionsPlugin)
-        classpath(buildcfg.GradlePlugins.googleServices)
+        classpath(buildcfg.Deps.ComAndroidToolsBuild.gradle)
+        classpath(buildcfg.Deps.ComGithubBenManes.gradleVersionsPlugin)
+        classpath(buildcfg.Deps.ComGoogle.GMS.googleServices)
+        classpath(buildcfg.Deps.ComVanniktech.gradleMavenPublishPlugin)
+        classpath(buildcfg.Deps.OrgJetBrains.Kotlin.kotlinGradlePlugin)
     }
 }
 
@@ -46,7 +46,7 @@ subprojects {
     }
 }
 
-apply(plugin = buildcfg.GradlePlugins.gradleVersionsPluginName)
+apply(plugin = buildcfg.Deps.ComGithubBenManes.gradleVersionsPluginName)
 tasks.withType<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask> {
     checkForGradleUpdate = false
     outputFormatter = "plain,html"

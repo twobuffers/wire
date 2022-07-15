@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 
 plugins {
     id(GradlePluginId.KOTLIN_JVM)
@@ -8,8 +8,8 @@ plugins {
 
 dependencies {
     implementation(project(":wire-utils"))
-    api(Libs.Kotlin.kotlinStdlib)
-    api(Libs.Dagger.dagger)
-    kapt(Libs.Dagger.daggerCompiler)
-    api(Libs.Moshi.moshi)
+    api(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
+    api(Deps.ComGoogle.Dagger.dagger)
+    kapt(Deps.ComGoogle.Dagger.daggerCompiler)
+    api(Deps.ComSquereup.Moshi.moshi)
 }

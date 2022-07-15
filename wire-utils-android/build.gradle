@@ -1,4 +1,4 @@
-import buildcfg.Libs
+import buildcfg.Deps
 import buildcfg.Versions
 
 plugins {
@@ -29,19 +29,19 @@ dependencies {
     implementation(project(":wire-coroutines"))
     implementation(project(":wire-utils"))
 
-    implementation Libs.Kotlin.kotlinStdlib
+    implementation(Deps.OrgJetBrains.Kotlin.kotlinStdlib)
 
-    api Libs.Coroutines.coroutinesCore               // exported: Job
+    api(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)               // exported: Job
 
-    api Libs.AndroidX.appcompat                      // exported: AppCompatActivity
-    compileOnly Libs.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
-    implementation Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx
-    implementation Libs.AndroidX.Lifecycle.lifecycleService
-    api Libs.AndroidX.recyclerview
-    compileOnly Libs.AndroidX.viewpager2             // clearAdapterOnViewDestroy
-    api(Libs.AndroidX.Navigation.navigationFragment)
+    api(Deps.AndroidX.appcompat)                      // exported: AppCompatActivity
+    compileOnly Deps.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
+    implementation(Deps.AndroidX.Lifecycle.lifecycleRuntimeKtx)
+    implementation(Deps.AndroidX.Lifecycle.lifecycleService)
+    api(Deps.AndroidX.recyclerview)
+    compileOnly(Deps.AndroidX.viewpager2)            // clearAdapterOnViewDestroy
+    api(Deps.AndroidX.Navigation.navigationFragment)
 
-    implementation(Libs.AndroidX.Security.securityCrypto)
+    implementation(Deps.AndroidX.Security.securityCrypto)
 
-    implementation(Libs.timber)
+    implementation(Deps.ComJakeWharton.timber)
 }
