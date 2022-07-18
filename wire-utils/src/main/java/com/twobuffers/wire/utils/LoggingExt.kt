@@ -7,4 +7,5 @@ inline val <reified T : Any>T.logTag get() = T::class.java.simpleName
 // Create 'address' of the object, an alternative to `toString` method.
 // There the 'address' is class name combined with the instance memory address.
 // Example result: `MainActivity@11ed7e8`. It is handy for printing objects to stdout.
-inline val <T : Any> T.address get(): String = "${this::class.java.simpleName}@${hashCode().toString(16)}"
+inline val <T : Any> T.address get(): String =
+    "${this::class.java.simpleName}@${hashCode().toString(16).padStart(8, '0')}"
