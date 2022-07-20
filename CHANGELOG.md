@@ -2,66 +2,75 @@
 
 ## [Unreleased]
 
-## [0.4.8] - 2021-05-03
+## [0.4.9] - 2022-07-20
+
+- Added utils to log lifecycle events
+- Added showToast
+- Added findNavControllerInActivity & findNavControllerInFragment
+- Updated deps
+- Make .address to always return 8 characters 
+- Added ppStr
+
+## [0.4.8] - 2022-05-03
 
 - Add extensions to convert Map<> to Bundle
 
-## [0.4.7] - 2021-04-20
+## [0.4.7] - 2022-04-20
 
 - Add shared prefs utils
 - Add StateFlow at ThreeTenABPInitializer.initialized
 - Add Flow.filter for readability
 
-## [0.4.6] - 2021-04-12
+## [0.4.6] - 2022-04-12
 
 - Add Flow.toList for testing
 
-## [0.4.5] - 2021-04-11
+## [0.4.5] - 2022-04-11
 
 - Fix issue with DataBinding when upgrade in the client
 - Add new utils
 
-## [0.4.4] - 2021-03-09
+## [0.4.4] - 2022-03-09
 
 - Fix bug in OkHttp Authenticator (concurrent use)
 - Add Tuple
 
-## [0.4.3] - 2021-03-08
+## [0.4.3] - 2022-03-08
 
 - Fix bug in OkHttp Authenticator (introduced in [0.4.2])
 - Change HttpLoggingInterceptor from Network- to ApplicationInterceptor
 
-## [0.4.2] - 2021-03-08
+## [0.4.2] - 2022-03-08
 
 - Improve `createBearerAuthenticator()` (add `consent` param)
 
-## [0.4.1] - 2021-03-08
+## [0.4.1] - 2022-03-08
 
 - Change `Lifecycle.onEvent` API (it returns LifecycleObserver now)
 - Add `Lifecycle.cancel` (to cancel onEvent action)
 
-## [0.4.0] - 2021-03-08
+## [0.4.0] - 2022-03-08
 
 - Change API of every* fns (breaking change)
 
-## [0.3.2] - 2021-01-27
+## [0.3.2] - 2022-01-27
 
 - Add lifecycle utils handling ON_DESTROY events
 - Add more utils for dealing with disposables (wire-rxjava-android)
 - Add a small logging util fn `Any.address`
 
-## [0.3.1] - 2021-01-27
+## [0.3.1] - 2022-01-27
 
 - Add Disposable.disposeOnViewDestroy (wire-rxjava-android)
 
-## [0.3.0] - 2021-01-26
+## [0.3.0] - 2022-01-26
 
 - Add ViewBindingAware
 - Rename wire-coroutines-common & wire-coroutines to wire-coroutines & wire-coroutines-android
 - Add Fragment.clearAdapterOnViewDestroy
 - Add Disposable.addTo (wire-rxjava)
 
-## [0.2.0] - 2021-01-06
+## [0.2.0] - 2022-01-06
 
 - Add wire-retrofit
 - Add wire-moshi
