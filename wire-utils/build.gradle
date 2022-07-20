@@ -19,6 +19,8 @@ dependencies {
     api(Deps.AndroidX.Annotation.annotation)
     api(Deps.ComGoogle.Dagger.dagger)
 
+    implementation(Deps.ComTylerThrailkillHelpers.prettyPrint)
+
     testImplementation(Deps.JUnit.junit4)
     testImplementation(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesTest)
 }
