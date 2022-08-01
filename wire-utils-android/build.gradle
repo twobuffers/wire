@@ -34,7 +34,8 @@ dependencies {
     api(Deps.OrgJetBrains.KotlinX.Coroutines.kotlinxCoroutinesCore)               // exported: Job
 
     api(Deps.AndroidX.appcompat)                      // exported: AppCompatActivity
-    compileOnly Deps.AndroidX.DataBinding.databindingRuntime // exported: DataBindingUtil, ViewDataBinding
+    compileOnly(Deps.AndroidX.DataBinding.databindingRuntime) // exported: DataBindingUtil, ViewDataBinding
+    compileOnly(Deps.AndroidX.DataBinding.viewBinding) // exported: ViewBinding
     implementation(Deps.AndroidX.Lifecycle.lifecycleRuntimeKtx)
     implementation(Deps.AndroidX.Lifecycle.lifecycleService)
     api(Deps.AndroidX.recyclerview)

@@ -4,10 +4,16 @@
 
 package buildcfg
 
+// Android Studio:
+// https://developer.android.com/studio/releases
+// https://developer.android.com/studio/preview/features
+
 object Deps {
 
     object AndroidX {
-        // Sources: https://android.googlesource.com/platform/frameworks/support/+/HEAD/
+        // Sources:
+        // - repo: https://android.googlesource.com/platform/frameworks/support/+/HEAD/
+        // - code search: https://cs.android.com/androidx
         // Versions: https://developer.android.com/jetpack/androidx/versions
 
         object Annotation {
@@ -104,6 +110,9 @@ object Deps {
             private const val version = Deps.ComAndroidToolsBuild.agpVersion
             const val databindingCompiler = "androidx.databinding:databinding-compiler:$version"
             const val databindingRuntime = "androidx.databinding:databinding-runtime:$version"
+            const val viewBinding = "androidx.databinding:viewbinding:$version"
+            // You usually don't import these libraries. They are by default provided by AGP.
+            // The only reason to provide necessary symbols for libraries databinding or viewbinding related.
         }
 
         object Fragment {
@@ -255,8 +264,16 @@ object Deps {
             const val epoxyProcessor = "com.airbnb.android:epoxy-processor:$version"
         }
 
-        // https://github.com/airbnb/mavericks/releases
-        const val mavericks = "com.airbnb.android:mavericks:2.5.0"
+        object Mavericks {
+            // https://search.maven.org/search?q=g:com.airbnb.android
+            // https://github.com/airbnb/mavericks/releases
+            private const val version = "2.7.0"
+            const val mavericks = "com.airbnb.android:mavericks:$version"
+            const val mavericksCompose = "com.airbnb.android:mavericks-compose:$version"
+            const val mavericksHilt = "com.airbnb.android:mavericks-hilt:$version"
+            const val mavericksNavigation = "com.airbnb.android:mavericks-navigation:$version"
+            const val mavericksRxJava2 = "com.airbnb.android:mavericks-rxjava2:$version"
+        }
 
         // On version bump up, keep in mind about updating `MyBaseMvRxFragment`.
         const val mvrx = "com.airbnb.android:mvrx:1.5.1" // latest: 2.0.0-alpha3
@@ -509,6 +526,7 @@ object Deps {
         }
 
         object Firebase {
+            // Code search: https://cs.opensource.google/firebase-sdk/firebase-android-sdk
             // https://maven.google.com/web/index.html#com.google.firebase:firebase-core
             // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics
             // https://maven.google.com/web/index.html#com.google.firebase:firebase-analytics-ktx
@@ -539,8 +557,9 @@ object Deps {
         }
 
         object Guava {
-            // https://github.com/google/guava/releases
-            // https://search.maven.org/search?q=g:com.google.guava
+            // Versions: https://github.com/google/guava/releases
+            // Code search: https://cs.opensource.google/guava/guava
+            // Maven: https://search.maven.org/search?q=g:com.google.guava
             const val version = "31.1"
             const val guavaJre =     "com.google.guava:guava:$version-jre"
             const val guavaAndroid = "com.google.guava:guava:$version-android"
@@ -555,7 +574,8 @@ object Deps {
             const val googleServices = "com.google.gms:google-services:4.3.13"
         }
 
-        // https://github.com/google/truth/releases
+        // Versions: https://github.com/google/truth/releases
+        // Code search: https://cs.opensource.google/truth/truth
         const val truth = "com.google.truth:truth:1.1.3"
 
         const val zxingCore = "com.google.zxing:core:3.5.0" // 3.3.2 is the last working with zxing-android-embedded:3.6.0
@@ -707,7 +727,7 @@ object Deps {
             // https://search.maven.org/search?q=g:com.twobuffers.wire
             // https://s01.oss.sonatype.org/content/groups/public/com/twobuffers/wire/ (RELEASES)
             // https://s01.oss.sonatype.org/content/groups/staging/com/twobuffers/wire/ (SNAPSHOTS)
-            private const val version = "0.4.9-SNAPSHOT"
+            private const val version = "0.4.10-SNAPSHOT"
             const val wireCoroutines = "com.twobuffers.wire:wire-coroutines:$version"
             const val wireCoroutinesAndroid = "com.twobuffers.wire:wire-coroutines-android:$version"
             const val wireDiAnnotationsCommon = "com.twobuffers.wire:wire-di-annotations-common:$version"
