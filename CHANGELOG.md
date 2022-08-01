@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+## [0.4.10] - 2022-08-01
+
+- Added delegates to simplify view binding
+
 ## [0.4.9] - 2022-07-20
 
 - Added utils to log lifecycle events

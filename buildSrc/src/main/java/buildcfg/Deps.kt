@@ -727,7 +727,7 @@ object Deps {
             // https://search.maven.org/search?q=g:com.twobuffers.wire
             // https://s01.oss.sonatype.org/content/groups/public/com/twobuffers/wire/ (RELEASES)
             // https://s01.oss.sonatype.org/content/groups/staging/com/twobuffers/wire/ (SNAPSHOTS)
-            private const val version = "0.4.10-SNAPSHOT"
+            private const val version = "0.4.10"
             const val wireCoroutines = "com.twobuffers.wire:wire-coroutines:$version"
             const val wireCoroutinesAndroid = "com.twobuffers.wire:wire-coroutines-android:$version"
             const val wireDiAnnotationsCommon = "com.twobuffers.wire:wire-di-annotations-common:$version"
