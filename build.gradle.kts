@@ -38,12 +38,6 @@ subprojects {
             allWarningsAsErrors = false
         }
     }
-
-    plugins.withType<com.vanniktech.maven.publish.MavenPublishPlugin> {
-        configure<com.vanniktech.maven.publish.MavenPublishPluginExtension> {
-            sonatypeHost = com.vanniktech.maven.publish.SonatypeHost.S01
-        }
-    }
 }
 
 apply(plugin = buildcfg.Deps.ComGithubBenManes.gradleVersionsPluginName)
