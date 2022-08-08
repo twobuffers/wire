@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+## [0.4.11] - 2022-08-08
+
 - Fix crash due ProGuard minifying method used by viewBinding
 
 ## [0.4.10] - 2022-08-01
