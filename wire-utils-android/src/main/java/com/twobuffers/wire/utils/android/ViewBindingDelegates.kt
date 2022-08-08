@@ -57,6 +57,11 @@ class FragmentViewBindingDelegate<T : ViewBinding>(
  * To use, just call
  * private val binding: FHomeWorkoutDetailsBinding by viewBinding()
  * with your binding class and access it as you normally would.
+ *
+ * If You use Proguard or R8, be sure to keep the bind method available with the following configuration:
+ *     -keepclassmembers class * extends androidx.viewbinding.ViewBinding {
+ *        public static *** bind(android.view.View);
+ *     }
  */
 inline fun <reified T : ViewBinding> Fragment.viewBinding() = FragmentViewBindingDelegate(T::class.java, this)
 
@@ -69,6 +74,11 @@ inline fun <reified T : ViewBinding> Fragment.viewBinding() = FragmentViewBindin
  * To use, just call:
  * private val binding: FHomeWorkoutDetailsBinding by viewBinding()
  * with your binding class and access it as you normally would.
+ *
+ * If You use Proguard or R8, be sure to keep the bind method available with the following configuration:
+ *     -keepclassmembers class * extends androidx.viewbinding.ViewBinding {
+ *        public static *** inflate(android.view.View);
+ *     }
  */
 inline fun <reified T : ViewBinding> ViewGroup.viewBinding() = ViewBindingDelegate(T::class.java, this)
 

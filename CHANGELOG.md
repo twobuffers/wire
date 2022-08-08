@@ -2,6 +2,8 @@
 
 ## [Unreleased]
 
+- Fix crash due ProGuard minifying method used by viewBinding
+
 ## [0.4.10] - 2022-08-01
 
 - Added delegates to simplify view binding
